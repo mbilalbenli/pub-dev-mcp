@@ -1,0 +1,26 @@
+name: pub-dev-package-intelligence
+summary: "MCP server that surfaces pub.dev package search, versioning, compatibility, and scoring insights."
+repository_url: https://github.com/your-org/pub-dev-mcp
+homepage_url: https://github.com/your-org/pub-dev-mcp#readme
+license: MIT
+maintainers:
+  - name: Your Name
+    email: maintainer@example.com
+transports:
+  - stdio
+  - http
+entrypoint:
+  command: ./PubDevMcp.Server
+  args:
+    - --stdio
+artifacts:
+  native_aot_release:
+    description: "Self-contained NativeAOT binaries produced via dotnet publish -c Release -r <RID>"
+    location: src/PubDevMcp.Server/bin/Release/net9.0
+observability:
+  logs: structured-json
+  traces: otlp
+  metrics: otlp
+notes:
+  - "Attach Release build/test logs and quickstart documentation when submitting to the registry."
+  - "No Docker image required; publish NativeAOT binaries per README instructions."
