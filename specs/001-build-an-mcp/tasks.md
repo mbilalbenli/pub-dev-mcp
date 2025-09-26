@@ -107,6 +107,12 @@
 - [x] T051 Create Docker multi-stage build optimized for .NET 9 AOT deployment in `Dockerfile`
 - [x] T052 Update quickstart.md documentation with final build and run instructions
 
+## Phase 3.8: Release & Publication
+- [ ] T053 Promote `001-build-an-mcp` work to a public repository with a stable default branch (`main`) and tag the first GA release.
+- [x] T054 Author a top-level `README.md` summarizing MCP capabilities, configuration, and stdio/http startup flows (no Docker dependency).
+- [x] T055 Compile GitHub MCP registry metadata (name, description, transports = stdio/http, license, support contact) and stage submission materials.
+- [x] T056 Package Release build artifacts (NativeAOT binaries, quickstart link) for publication without creating or distributing a Docker image.
+
 ## Dependencies
 - Setup (T001-T003) before everything else
 - Tests (T004-T016) before implementation (T017-T045)
