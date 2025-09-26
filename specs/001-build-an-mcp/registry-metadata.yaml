@@ -5,7 +5,7 @@ homepage_url: https://github.com/mbilalbenli/pub-dev-mcp#readme
 license: MIT
 maintainers:
   - name: M. Bilal Benli
-    email: mbilalbenli@gmail.com
+    email: noreply@github.com
 transports:
   - stdio
   - http

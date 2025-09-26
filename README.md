@@ -86,7 +86,7 @@ dotnet run --configuration Release
 
 - **Transports:** stdio, http
 - **License:** MIT (add `LICENSE` file before publishing)
-- **Maintainer Contact:** mbilalbenli@gmail.com
+- **Maintainer Contact:** noreply@github.com
 - **Upstream Docs:** [`quickstart.md`](specs/001-build-an-mcp/quickstart.md)
 
 Prior to submission:
