@@ -1,0 +1,472 @@
+openapi: 3.1.0
+info:
+  title: Pub.dev Package Intelligence MCP API
+  version: 0.1.0
+  description: >-
+    Contract map translating MCP tool invocations into REST semantics for design-time validation.
+servers:
+  - url: https://localhost:5001
+    description: Development bridge endpoint
+  - url: https://pubdev-mcp.example.com
+    description: Production deployment endpoint
+paths:
+  /tools/search-packages:
+    post:
+      summary: Search pub.dev packages by keyword
+      operationId: searchPackages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchPackagesRequest'
+      responses:
+        '200':
+          description: Ranked list of up to 10 package summaries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchPackagesResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '503':
+          $ref: '#/components/responses/UpstreamFailure'
+  /tools/latest-version:
+    post:
+      summary: Retrieve latest stable package version
+      operationId: latestVersion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LatestVersionRequest'
+      responses:
+        '200':
+          description: Latest stable version metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LatestVersionResponse'
+        '404':
+          description: Package not found or no stable versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetail'
+        '503':
+          $ref: '#/components/responses/UpstreamFailure'
+  /tools/check-compatibility:
+    post:
+      summary: Evaluate package compatibility with a Flutter SDK version
+      operationId: checkCompatibility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckCompatibilityRequest'
+      responses:
+        '200':
+          description: Compatibility analysis result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckCompatibilityResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '503':
+          $ref: '#/components/responses/UpstreamFailure'
+  /tools/list-versions:
+    post:
+      summary: List package versions including prereleases when requested
+      operationId: listVersions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListVersionsRequest'
+      responses:
+        '200':
+          description: Ordered version history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVersionsResponse'
+        '503':
+          $ref: '#/components/responses/UpstreamFailure'
+  /tools/package-details:
+    post:
+      summary: Retrieve detailed package metadata
+      operationId: packageDetails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackageDetailsRequest'
+      responses:
+        '200':
+          description: Detailed package profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageDetailsResponse'
+        '503':
+          $ref: '#/components/responses/UpstreamFailure'
+  /tools/publisher-packages:
+    post:
+      summary: List packages maintained by a publisher
+      operationId: publisherPackages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublisherPackagesRequest'
+      responses:
+        '200':
+          description: Packages grouped by publisher
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherPackagesResponse'
+        '503':
+          $ref: '#/components/responses/UpstreamFailure'
+  /tools/score-insights:
+    post:
+      summary: Fetch composite score insights for a package
+      operationId: scoreInsights
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoreInsightsRequest'
+      responses:
+        '200':
+          description: Score breakdown with component notes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreInsightsResponse'
+        '503':
+          $ref: '#/components/responses/UpstreamFailure'
+  /tools/dependency-inspector:
+    post:
+      summary: Generate full dependency tree for a package version
+      operationId: dependencyInspector
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependencyInspectorRequest'
+      responses:
+        '200':
+          description: Dependency graph including transitive dependencies and issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DependencyInspectorResponse'
+        '503':
+          $ref: '#/components/responses/UpstreamFailure'
+components:
+  responses:
+    ValidationError:
+      description: Input validation failure
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    UpstreamFailure:
+      description: pub.dev dependency failure after resilience policies exhausted
+      headers:
+        Retry-After:
+          schema:
+            type: string
+          description: Suggested retry window when rate limited
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+  schemas:
+    ProblemDetail:
+      type: object
+      required: [title, detail, status]
+      properties:
+        title:
+          type: string
+        detail:
+          type: string
+        status:
+          type: integer
+        instance:
+          type: string
+          format: uri
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    SearchPackagesRequest:
+      type: object
+      required: [query]
+      properties:
+        query:
+          type: string
+          maxLength: 80
+        sdkConstraint:
+          type: string
+          nullable: true
+          description: Optional Flutter SDK constraint used to annotate results
+        includePrerelease:
+          type: boolean
+          default: false
+    SearchPackagesResponse:
+      type: object
+      required: [query, packages]
+      properties:
+        query:
+          type: string
+        packages:
+          type: array
+          maxItems: 10
+          items:
+            $ref: '#/components/schemas/PackageSummary'
+        moreResultsHint:
+          type: string
+          nullable: true
+    PackageSummary:
+      type: object
+      required: [name, description, publisher, likes, pubPoints, popularity]
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        publisher:
+          type: string
+        likes:
+          type: integer
+          minimum: 0
+        pubPoints:
+          type: integer
+          minimum: 0
+        popularity:
+          type: number
+          minimum: 0
+          maximum: 1
+        latestStable:
+          $ref: '#/components/schemas/VersionDetail'
+    LatestVersionRequest:
+      type: object
+      required: [package]
+      properties:
+        package:
+          type: string
+    LatestVersionResponse:
+      type: object
+      required: [package, latest]
+      properties:
+        package:
+          type: string
+        latest:
+          $ref: '#/components/schemas/VersionDetail'
+    CheckCompatibilityRequest:
+      type: object
+      required: [package, flutterSdk]
+      properties:
+        package:
+          type: string
+        flutterSdk:
+          type: string
+        projectConstraint:
+          type: string
+          nullable: true
+    CheckCompatibilityResponse:
+      type: object
+      required: [package, flutterSdk, satisfies, evaluatedVersions]
+      properties:
+        package:
+          type: string
+        flutterSdk:
+          type: string
+        satisfies:
+          type: boolean
+        recommendedVersion:
+          type: string
+          nullable: true
+        explanation:
+          type: string
+        evaluatedVersions:
+          type: array
+          items:
+            $ref: '#/components/schemas/VersionDetail'
+    ListVersionsRequest:
+      type: object
+      required: [package]
+      properties:
+        package:
+          type: string
+        includePrerelease:
+          type: boolean
+          default: false
+        take:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+    ListVersionsResponse:
+      type: object
+      required: [package, versions]
+      properties:
+        package:
+          type: string
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/VersionDetail'
+    PackageDetailsRequest:
+      type: object
+      required: [package]
+      properties:
+        package:
+          type: string
+    PackageDetailsResponse:
+      type: object
+      required: [package, description, homepage, repository, score]
+      properties:
+        package:
+          type: string
+        description:
+          type: string
+        homepage:
+          type: string
+          format: uri
+          nullable: true
+        repository:
+          type: string
+          format: uri
+          nullable: true
+        license:
+          type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+        latestStable:
+          $ref: '#/components/schemas/VersionDetail'
+        score:
+          $ref: '#/components/schemas/ScoreInsight'
+    PublisherPackagesRequest:
+      type: object
+      required: [publisher]
+      properties:
+        publisher:
+          type: string
+    PublisherPackagesResponse:
+      type: object
+      required: [publisher, packages]
+      properties:
+        publisher:
+          type: string
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageSummary'
+    ScoreInsightsRequest:
+      type: object
+      required: [package]
+      properties:
+        package:
+          type: string
+    ScoreInsightsResponse:
+      type: object
+      required: [package, overallScore, popularity, likes, pubPoints, componentNotes, fetchedAt]
+      properties:
+        package:
+          type: string
+        overallScore:
+          type: number
+        popularity:
+          type: number
+          minimum: 0
+          maximum: 1
+        likes:
+          type: integer
+          minimum: 0
+        pubPoints:
+          type: integer
+          minimum: 0
+        componentNotes:
+          type: object
+          additionalProperties:
+            type: string
+        fetchedAt:
+          type: string
+          format: date-time
+    DependencyInspectorRequest:
+      type: object
+      required: [package]
+      properties:
+        package:
+          type: string
+        version:
+          type: string
+          nullable: true
+        includeDevDependencies:
+          type: boolean
+          default: false
+    DependencyInspectorResponse:
+      type: object
+      required: [package, rootVersion, nodes]
+      properties:
+        package:
+          type: string
+        rootVersion:
+          type: string
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DependencyNode'
+        issues:
+          type: array
+          items:
+            type: string
+    VersionDetail:
+      type: object
+      required: [version, released, sdkConstraint, isPrerelease]
+      properties:
+        version:
+          type: string
+        released:
+          type: string
+          format: date-time
+        sdkConstraint:
+          type: string
+        isPrerelease:
+          type: boolean
+        releaseNotesUrl:
+          type: string
+          format: uri
+          nullable: true
+    DependencyNode:
+      type: object
+      required: [package, requested, resolved, isDirect]
+      properties:
+        package:
+          type: string
+        requested:
+          type: string
+        resolved:
+          type: string
+        isDirect:
+          type: boolean
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/DependencyNode'
