@@ -1,0 +1,10 @@
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\bin\Release\net9.0\.msCoverageSourceRootsMapping_PubDevMcp.Tests.Contract
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\bin\Release\net9.0\CoverletSourceRootsMapping_PubDevMcp.Tests.Contract
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\obj\Release\net9.0\PubDevMcp.Tests.Contract.csproj.AssemblyReference.cache
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\obj\Release\net9.0\Verify.Attributes.cs
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\obj\Release\net9.0\VerifyXunit.Attributes.cs
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\obj\Release\net9.0\PubDevMcp.Tests.Contract.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\obj\Release\net9.0\PubDevMcp.Tests.Contract.AssemblyInfoInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\obj\Release\net9.0\PubDevMcp.Tests.Contract.AssemblyInfo.cs
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\obj\Release\net9.0\PubDevMcp.Tests.Contract.csproj.CoreCompileInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\tests\contract\obj\Release\net9.0\PubDevMcp.Tests.Contract.xml

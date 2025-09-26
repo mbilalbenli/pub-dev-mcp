@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/out/
+**/.vs/
+**/*.user
+**/*.suo
+**/*.pdb
+**/*.cache
+.git
+.github
+.vscode
+Dockerfile
+BenchmarkDotNet.Artifacts
+artifacts
+node_modules

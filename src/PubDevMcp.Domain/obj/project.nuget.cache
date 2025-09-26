@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jzSTiKfYrz4=",
+  "dgSpecHash": "acG+JQhZM78=",
   "success": true,
   "projectFilePath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain\\PubDevMcp.Domain.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\mbila\\.nuget\\packages\\microsoft.dotnet.ilcompiler\\9.0.8\\microsoft.dotnet.ilcompiler.9.0.8.nupkg.sha512",
-    "C:\\Users\\mbila\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.8\\microsoft.net.illink.tasks.9.0.8.nupkg.sha512",
-    "C:\\Users\\mbila\\.nuget\\packages\\runtime.win-x64.microsoft.dotnet.ilcompiler\\9.0.8\\runtime.win-x64.microsoft.dotnet.ilcompiler.9.0.8.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

@@ -28,7 +28,7 @@ namespace PubDevMcp.Tests.Performance;
 [Config(typeof(ThroughputConfig))]
 [MemoryDiagnoser]
 [SuppressMessage("Performance", "CA1812", Justification = "BenchmarkDotNet discovers benchmarks via reflection.")]
-internal sealed class McpPerformanceBenchmarks : IDisposable
+public class McpPerformanceBenchmarks : IDisposable
 {
     private ServiceProvider? _provider;
     private JsonRpcPipeline _pipeline = default!;
