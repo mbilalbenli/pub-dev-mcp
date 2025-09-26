@@ -1,0 +1,14 @@
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Infrastructure.deps.json
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Infrastructure.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Infrastructure.pdb
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMcp.Infrastructure.csproj.AssemblyReference.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMcp.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMcp.Infrastructure.AssemblyInfoInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMcp.Infrastructure.AssemblyInfo.cs
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMcp.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMcp.Infrastructure.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\refint\PubDevMcp.Infrastructure.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMcp.Infrastructure.pdb
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\ref\PubDevMcp.Infrastructure.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Infrastructure.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMcp.Infrastructure.xml
