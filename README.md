@@ -25,8 +25,8 @@ Refer to [`specs/001-build-an-mcp/quickstart.md`](specs/001-build-an-mcp/quickst
 
 ```powershell
 # From the directory where you keep repos
-git clone <your-public-repo-url>
-cd pub_dev_mcp
+git clone https://github.com/mbilalbenli/pub-dev-mcp.git
+cd pub-dev-mcp
 
 dotnet restore PubDevMcp.sln
 ```
@@ -86,7 +86,7 @@ dotnet run --configuration Release
 
 - **Transports:** stdio, http
 - **License:** MIT (add `LICENSE` file before publishing)
-- **Maintainer Contact:** <maintainer@example.com>
+- **Maintainer Contact:** mbilalbenli@gmail.com
 - **Upstream Docs:** [`quickstart.md`](specs/001-build-an-mcp/quickstart.md)
 
 Prior to submission:

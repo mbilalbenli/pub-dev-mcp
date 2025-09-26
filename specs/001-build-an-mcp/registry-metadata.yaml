@@ -1,11 +1,11 @@
 name: pub-dev-package-intelligence
 summary: "MCP server that surfaces pub.dev package search, versioning, compatibility, and scoring insights."
-repository_url: https://github.com/your-org/pub-dev-mcp
-homepage_url: https://github.com/your-org/pub-dev-mcp#readme
+repository_url: https://github.com/mbilalbenli/pub-dev-mcp
+homepage_url: https://github.com/mbilalbenli/pub-dev-mcp#readme
 license: MIT
 maintainers:
-  - name: Your Name
-    email: maintainer@example.com
+  - name: M. Bilal Benli
+    email: mbilalbenli@gmail.com
 transports:
   - stdio
   - http
