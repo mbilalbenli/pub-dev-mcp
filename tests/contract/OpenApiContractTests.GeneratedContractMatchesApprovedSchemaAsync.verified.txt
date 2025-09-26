@@ -1,0 +1,177 @@
+﻿{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Pub.dev Package Intelligence MCP API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/tools/check-compatibility": {
+      "post": {
+        "summary": "Evaluate package compatibility for a Flutter SDK version.",
+        "operationId": "check_compatibility",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/tools/dependency-inspector": {
+      "post": {
+        "summary": "Inspect the dependency graph for a package version.",
+        "operationId": "dependency_inspector",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/tools/latest-version": {
+      "post": {
+        "summary": "Retrieve the newest stable version for a package.",
+        "operationId": "latest_version",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/tools/list-versions": {
+      "post": {
+        "summary": "List package versions in descending order, optionally including prereleases.",
+        "operationId": "list_versions",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/tools/package-details": {
+      "post": {
+        "summary": "Return package metadata, links, and latest stable release information.",
+        "operationId": "package_details",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/tools/publisher-packages": {
+      "post": {
+        "summary": "Retrieve packages owned by a specific publisher.",
+        "operationId": "publisher_packages",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/tools/score-insights": {
+      "post": {
+        "summary": "Obtain overall and component score insights for a package.",
+        "operationId": "score_insights",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/tools/search-packages": {
+      "post": {
+        "summary": "Search pub.dev packages by keyword and return the top 10 results.",
+        "operationId": "search_packages",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  }
+}

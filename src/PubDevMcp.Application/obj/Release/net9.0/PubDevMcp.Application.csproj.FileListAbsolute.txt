@@ -1,0 +1,15 @@
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\bin\Release\net9.0\PubDevMcp.Application.deps.json
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\bin\Release\net9.0\PubDevMcp.Application.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\bin\Release\net9.0\PubDevMcp.Application.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\bin\Release\net9.0\PubDevMcp.Domain.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\bin\Release\net9.0\PubDevMcp.Domain.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\PubDevMcp.Application.csproj.AssemblyReference.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\PubDevMcp.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\PubDevMcp.Application.AssemblyInfoInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\PubDevMcp.Application.AssemblyInfo.cs
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\PubDevMcp.Application.csproj.CoreCompileInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\PubDevMc.8D86F966.Up2Date
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\PubDevMcp.Application.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\refint\PubDevMcp.Application.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\PubDevMcp.Application.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Application\obj\Release\net9.0\ref\PubDevMcp.Application.dll

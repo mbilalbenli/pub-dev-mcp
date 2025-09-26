@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
@@ -17,17 +18,16 @@ using Polly;
 
 namespace PubDevMcp.Infrastructure.Services;
 
-public sealed class PubDevApiClient : IPubDevApiClient
+public sealed partial class PubDevApiClient : IPubDevApiClient
 {
-    private static readonly JsonSerializerOptions SerializerOptions = new(JsonSerializerDefaults.Web)
-    {
-        PropertyNameCaseInsensitive = true
-    };
-
     private readonly HttpClient _httpClient;
     private readonly PubDevApiOptions _options;
     private readonly ResiliencePipeline<HttpResponseMessage> _pipeline;
     private readonly ICacheService _cacheService;
+    private static readonly PubDevApiClientJsonSerializerContext SerializerContext = new(new JsonSerializerOptions(JsonSerializerDefaults.Web)
+    {
+        PropertyNameCaseInsensitive = true
+    });
 
     public PubDevApiClient(HttpClient httpClient, IOptions<PubDevApiOptions> options, ICacheService cacheService, ResiliencePipeline<HttpResponseMessage>? pipeline = null)
     {
@@ -57,7 +57,7 @@ public sealed class PubDevApiClient : IPubDevApiClient
             searchUri += "&include-prerelease=true";
         }
 
-        var response = await GetAsync<SearchResponse>(searchUri, cancellationToken).ConfigureAwait(false);
+    var response = await GetAsync(searchUri, SerializerContext.SearchResponse, cancellationToken).ConfigureAwait(false);
         var packageNames = response.Packages
             .Select(result => result.Package)
             .Where(static name => !string.IsNullOrWhiteSpace(name))
@@ -126,7 +126,7 @@ public sealed class PubDevApiClient : IPubDevApiClient
 
         while (!string.IsNullOrEmpty(next))
         {
-            var page = await GetAsync<PublisherPackagesResponse>(next!, cancellationToken).ConfigureAwait(false);
+            var page = await GetAsync(next!, SerializerContext.PublisherPackagesResponse, cancellationToken).ConfigureAwait(false);
 
             foreach (var item in page.Packages)
             {
@@ -219,7 +219,7 @@ public sealed class PubDevApiClient : IPubDevApiClient
         ArgumentException.ThrowIfNullOrWhiteSpace(package);
 
         var packageUri = $"/api/packages/{Uri.EscapeDataString(package)}";
-        var response = await GetAsync<PackageResponse>(packageUri, cancellationToken).ConfigureAwait(false);
+    var response = await GetAsync(packageUri, SerializerContext.PackageResponse, cancellationToken).ConfigureAwait(false);
         return new PackageMetadata(
             response.Name,
             response.Publisher,
@@ -231,7 +231,7 @@ public sealed class PubDevApiClient : IPubDevApiClient
     private async Task<ScoreResponse> GetScoreAsync(string package, CancellationToken cancellationToken)
     {
         var scoreUri = $"/api/packages/{Uri.EscapeDataString(package)}/score";
-        return await GetAsync<ScoreResponse>(scoreUri, cancellationToken).ConfigureAwait(false);
+    return await GetAsync(scoreUri, SerializerContext.ScoreResponse, cancellationToken).ConfigureAwait(false);
     }
 
     private async Task<PackageVersionResponse> ResolveVersionAsync(PackageMetadata metadata, string? requestedVersion, CancellationToken cancellationToken)
@@ -249,7 +249,7 @@ public sealed class PubDevApiClient : IPubDevApiClient
 
         // Attempt to fetch specific version details from pub.dev when not present in cached metadata
         var versionUri = $"/api/packages/{Uri.EscapeDataString(metadata.Name)}/versions/{Uri.EscapeDataString(requestedVersion)}";
-        return await GetAsync<PackageVersionResponse>(versionUri, cancellationToken).ConfigureAwait(false);
+    return await GetAsync(versionUri, SerializerContext.PackageVersionResponse, cancellationToken).ConfigureAwait(false);
     }
 
     private static VersionDetail MapVersion(PackageVersionResponse version)
@@ -266,7 +266,7 @@ public sealed class PubDevApiClient : IPubDevApiClient
             releaseNotes);
     }
 
-    private async Task<T> GetAsync<T>(string requestUri, CancellationToken cancellationToken)
+    private async Task<T> GetAsync<T>(string requestUri, JsonTypeInfo<T> typeInfo, CancellationToken cancellationToken)
     {
         var uri = new Uri(requestUri, UriKind.RelativeOrAbsolute);
 
@@ -281,7 +281,7 @@ public sealed class PubDevApiClient : IPubDevApiClient
             response.EnsureSuccessStatusCode();
 
             await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-            var result = await JsonSerializer.DeserializeAsync<T>(stream, SerializerOptions, cancellationToken).ConfigureAwait(false);
+            var result = await JsonSerializer.DeserializeAsync(stream, typeInfo, cancellationToken).ConfigureAwait(false);
 
             return result ?? throw new InvalidOperationException($"Unable to deserialize response for '{requestUri}'.");
         }
@@ -485,4 +485,12 @@ public sealed class PubDevApiClient : IPubDevApiClient
             return candidate ?? metadata.LatestStable ?? metadata.Latest;
         }
     }
+
+    [JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Metadata, PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    [JsonSerializable(typeof(SearchResponse))]
+    [JsonSerializable(typeof(PublisherPackagesResponse))]
+    [JsonSerializable(typeof(PackageResponse))]
+    [JsonSerializable(typeof(PackageVersionResponse))]
+    [JsonSerializable(typeof(ScoreResponse))]
+    private sealed partial class PubDevApiClientJsonSerializerContext : JsonSerializerContext;
 }

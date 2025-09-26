@@ -1,5 +1,13 @@
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
+using Polly.CircuitBreaker;
+using PubDevMcp.Infrastructure.Options;
+using PubDevMcp.Infrastructure.Policies;
 
 namespace PubDevMcp.Tests.Integration;
 
@@ -27,9 +35,84 @@ public sealed class ResiliencePolicyTests
 
 internal sealed class ResiliencePolicyHarness
 {
-    public Task<ResilienceExecutionResult> ExecuteWithTransientFailuresAsync() => throw new NotImplementedException("Resilience policy harness not implemented");
+    public async Task<ResilienceExecutionResult> ExecuteWithTransientFailuresAsync()
+    {
+        var options = new PubDevResilienceOptions
+        {
+            RetryCount = 2,
+            RetryBaseDelay = TimeSpan.FromMilliseconds(20),
+            Timeout = TimeSpan.FromSeconds(1),
+            CircuitBreakerFailures = 4,
+            CircuitBreakerDuration = TimeSpan.FromSeconds(5),
+            CircuitBreakerWindow = TimeSpan.FromSeconds(2)
+        };
 
-    public Task<ResilienceCircuitState> ExecuteCircuitBreakerScenarioAsync() => throw new NotImplementedException("Resilience policy harness not implemented");
+        var pipeline = PubDevResiliencePolicies.Create(options);
+
+        var attempts = 0;
+        HttpResponseMessage? finalResponse = null;
+
+        await pipeline.ExecuteAsync(async cancellationToken =>
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            attempts++;
+            finalResponse = new HttpResponseMessage(HttpStatusCode.ServiceUnavailable);
+            await Task.CompletedTask;
+            return finalResponse;
+        }, CancellationToken.None).ConfigureAwait(false);
+
+        var outcome = finalResponse is { IsSuccessStatusCode: true }
+            ? ResilienceOutcome.Succeeded
+            : ResilienceOutcome.FailedAfterRetries;
+
+        finalResponse?.Dispose();
+
+        return new ResilienceExecutionResult(attempts, outcome);
+    }
+
+    public async Task<ResilienceCircuitState> ExecuteCircuitBreakerScenarioAsync()
+    {
+        var options = new PubDevResilienceOptions
+        {
+            RetryCount = 1,
+            RetryBaseDelay = TimeSpan.FromMilliseconds(10),
+            Timeout = TimeSpan.FromSeconds(1),
+            CircuitBreakerFailures = 2,
+            CircuitBreakerDuration = TimeSpan.FromSeconds(5),
+            CircuitBreakerWindow = TimeSpan.FromSeconds(2)
+        };
+
+        var pipeline = PubDevResiliencePolicies.Create(options);
+
+        async ValueTask<HttpResponseMessage> ExecuteFailureAsync(CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            await Task.CompletedTask;
+            return new HttpResponseMessage(HttpStatusCode.ServiceUnavailable);
+        }
+
+        try
+        {
+            for (var attempt = 0; attempt < options.CircuitBreakerFailures; attempt++)
+            {
+                using var response = await pipeline.ExecuteAsync(ExecuteFailureAsync, CancellationToken.None).ConfigureAwait(false);
+            }
+        }
+        catch (Exception)
+        {
+            return ResilienceCircuitState.Open;
+        }
+
+        try
+        {
+            using var response = await pipeline.ExecuteAsync(ExecuteFailureAsync, CancellationToken.None).ConfigureAwait(false);
+            return ResilienceCircuitState.Closed;
+        }
+        catch (Exception)
+        {
+            return ResilienceCircuitState.Open;
+        }
+    }
 }
 
 [SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Resilience execution result will be produced once policies are implemented")]

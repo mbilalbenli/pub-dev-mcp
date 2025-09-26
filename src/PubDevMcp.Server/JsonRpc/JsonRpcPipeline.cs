@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -52,13 +55,13 @@ internal sealed class JsonRpcPipeline
         catch (JsonRpcException ex)
         {
             _logger.LogWarning(ex, "Failed to parse JSON-RPC payload.");
-            return JsonRpcResponse.Error(null, ex.ToError(), _serializerOptions).ToJsonString(_serializerOptions);
+            return JsonRpcResponse.Error(null, ex.ToError()).ToJsonString(_serializerOptions);
         }
         catch (JsonException ex)
         {
             var parseError = new JsonRpcParseException("Malformed JSON payload.", ex);
             _logger.LogWarning(ex, "Malformed JSON payload received.");
-            return JsonRpcResponse.Error(null, parseError.ToError(), _serializerOptions).ToJsonString(_serializerOptions);
+            return JsonRpcResponse.Error(null, parseError.ToError()).ToJsonString(_serializerOptions);
         }
 
         var responseNode = await ExecuteAsync(root, cancellationToken).ConfigureAwait(false);
@@ -74,7 +77,7 @@ internal sealed class JsonRpcPipeline
             if (batch.Count == 0)
             {
                 var error = new JsonRpcInvalidRequestException("Batch must not be empty.");
-                return JsonRpcResponse.Error(null, error.ToError(), _serializerOptions);
+                return JsonRpcResponse.Error(null, error.ToError());
             }
 
             var responses = new JsonArray();
@@ -99,7 +102,7 @@ internal sealed class JsonRpcPipeline
         if (node is null)
         {
             var error = new JsonRpcInvalidRequestException("Request value must be a JSON object.");
-            return JsonRpcResponse.Error(null, error.ToError(), _serializerOptions);
+            return JsonRpcResponse.Error(null, error.ToError());
         }
 
         JsonRpcRequest request;
@@ -110,7 +113,7 @@ internal sealed class JsonRpcPipeline
         catch (JsonRpcException ex)
         {
             _logger.LogWarning(ex, "Invalid JSON-RPC request structure.");
-            return JsonRpcResponse.Error(null, ex.ToError(), _serializerOptions);
+            return JsonRpcResponse.Error(null, ex.ToError());
         }
 
         if (!_tools.TryGetValue(request.Method, out var descriptor))
@@ -119,7 +122,7 @@ internal sealed class JsonRpcPipeline
             _logger.LogWarning("JSON-RPC method {Method} not found.", request.Method);
             return request.IsNotification
                 ? null
-                : JsonRpcResponse.Error(request.Id, error.ToError(), _serializerOptions);
+                : JsonRpcResponse.Error(request.Id, error.ToError());
         }
 
         using var activity = _activitySource.StartActivity($"mcp.{descriptor.Name}", ActivityKind.Server);
@@ -141,7 +144,7 @@ internal sealed class JsonRpcPipeline
                 return null;
             }
 
-            return JsonRpcResponse.Success(request.Id, result, _serializerOptions);
+            return JsonRpcResponse.Success(request.Id, result);
         }
         catch (JsonRpcException ex)
         {
@@ -155,28 +158,28 @@ internal sealed class JsonRpcPipeline
             }
 
             _logger.LogWarning(ex, "JSON-RPC method {Method} returned error {Code}.", descriptor.Name, ex.Code);
-            return JsonRpcResponse.Error(request.Id, ex.ToError(), _serializerOptions);
+            return JsonRpcResponse.Error(request.Id, ex.ToError());
         }
         catch (ValidationException ex)
         {
             activity?.SetTag("rpc.status_code", "INVALID_ARGUMENT");
-            var error = JsonRpcInvalidParamsException.FromValidation(ex, _serializerOptions);
+            var error = JsonRpcInvalidParamsException.FromValidation(ex);
             _logger.LogWarning(ex, "Validation failed for JSON-RPC method {Method}.", descriptor.Name);
-            return JsonRpcResponse.Error(request.Id, error.ToError(), _serializerOptions);
+            return JsonRpcResponse.Error(request.Id, error.ToError());
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
         {
             activity?.SetTag("rpc.status_code", "CANCELLED");
             var error = new JsonRpcServerErrorException(-32001, "Request was cancelled.");
-            return request.IsNotification ? null : JsonRpcResponse.Error(request.Id, error.ToError(), _serializerOptions);
+            return request.IsNotification ? null : JsonRpcResponse.Error(request.Id, error.ToError());
         }
         catch (Exception ex)
         {
             activity?.SetTag("rpc.status_code", "EXCEPTION");
             _logger.LogError(ex, "Unhandled exception while processing JSON-RPC method {Method}.", descriptor.Name);
-            var data = JsonValue.Create(ex.Message);
+            var data = JsonSerializer.SerializeToNode(ex.Message, JsonRpcNodeSerializerContext.Default.String);
             var error = new JsonRpcInternalErrorException("Internal server error.", data);
-            return request.IsNotification ? null : JsonRpcResponse.Error(request.Id, error.ToError(), _serializerOptions);
+            return request.IsNotification ? null : JsonRpcResponse.Error(request.Id, error.ToError());
         }
     }
 }
@@ -228,34 +231,37 @@ internal sealed class JsonRpcRequest
 
 internal static class JsonRpcResponse
 {
-    public static JsonNode Success(JsonNode? id, JsonNode? result, JsonSerializerOptions options)
+    private static JsonNode? CreateNullNode()
+        => JsonSerializer.SerializeToNode<string?>(null, JsonRpcNodeSerializerContext.Default.String);
+
+    public static JsonNode Success(JsonNode? id, JsonNode? result)
     {
         var payload = new JsonObject
         {
             ["jsonrpc"] = "2.0",
-            ["result"] = result?.DeepClone() ?? JsonValue.Create((object?)null)
+            ["result"] = result?.DeepClone() ?? CreateNullNode()
         };
 
-        payload["id"] = id?.DeepClone() ?? JsonValue.Create((object?)null);
+        payload["id"] = id?.DeepClone() ?? CreateNullNode();
         return payload;
     }
 
-    public static JsonNode Error(JsonNode? id, JsonRpcError error, JsonSerializerOptions options)
+    public static JsonNode Error(JsonNode? id, JsonRpcError error)
     {
         var payload = new JsonObject
         {
             ["jsonrpc"] = "2.0",
-            ["error"] = error.ToJsonNode(options)
+            ["error"] = error.ToJsonNode()
         };
 
-        payload["id"] = id?.DeepClone() ?? JsonValue.Create((object?)null);
+        payload["id"] = id?.DeepClone() ?? CreateNullNode();
         return payload;
     }
 }
 
 internal sealed record JsonRpcError(int Code, string Message, JsonNode? Data)
 {
-    public JsonNode ToJsonNode(JsonSerializerOptions options)
+    public JsonNode ToJsonNode()
     {
         var error = new JsonObject
         {
@@ -383,10 +389,9 @@ internal sealed class JsonRpcInvalidParamsException : JsonRpcException
     {
     }
 
-    public static JsonRpcInvalidParamsException FromValidation(ValidationException exception, JsonSerializerOptions options)
+    public static JsonRpcInvalidParamsException FromValidation(ValidationException exception)
     {
         ArgumentNullException.ThrowIfNull(exception);
-        ArgumentNullException.ThrowIfNull(options);
 
         var errors = new JsonArray();
 
@@ -400,11 +405,12 @@ internal sealed class JsonRpcInvalidParamsException : JsonRpcException
 
             if (failure.AttemptedValue is not null)
             {
-                var attemptedValue = JsonSerializer.SerializeToNode(failure.AttemptedValue, failure.AttemptedValue.GetType(), options);
+                var attemptedText = Convert.ToString(failure.AttemptedValue, CultureInfo.InvariantCulture);
+                var attemptedValue = JsonSerializer.SerializeToNode(attemptedText, JsonRpcNodeSerializerContext.Default.String);
                 error["attemptedValue"] = attemptedValue;
             }
 
-            errors.Add(error);
+            errors.Add((JsonNode?)error);
         }
 
         var data = new JsonObject
@@ -461,3 +467,7 @@ internal sealed class JsonRpcServerErrorException : JsonRpcException
     {
     }
 }
+
+[JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Metadata)]
+[JsonSerializable(typeof(string))]
+internal partial class JsonRpcNodeSerializerContext : JsonSerializerContext;

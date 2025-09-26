@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PubDevMcp.Server.JsonRpc;
 
@@ -17,21 +18,18 @@ internal static class HttpTransport
 
         app.MapPost("/rpc", HandleRpcAsync)
             .WithName("Rpc")
-            .WithDisplayName("JSON-RPC endpoint")
-            .Produces(StatusCodes.Status200OK)
-            .Produces(StatusCodes.Status204NoContent)
-            .Produces(StatusCodes.Status400BadRequest);
+            .WithDisplayName("JSON-RPC endpoint");
 
         app.MapHealthChecks("/health/live");
         app.MapHealthChecks("/health/ready");
     }
 
-    private static async Task HandleRpcAsync(HttpContext context, JsonRpcPipeline pipeline, ILoggerFactory loggerFactory, CancellationToken cancellationToken)
+    private static async Task HandleRpcAsync(HttpContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
-        ArgumentNullException.ThrowIfNull(pipeline);
-        ArgumentNullException.ThrowIfNull(loggerFactory);
-
+        var cancellationToken = context.RequestAborted;
+        var pipeline = context.RequestServices.GetRequiredService<JsonRpcPipeline>();
+        var loggerFactory = context.RequestServices.GetRequiredService<ILoggerFactory>();
         var logger = loggerFactory.CreateLogger("HttpTransport.Rpc");
 
         string payload;

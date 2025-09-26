@@ -1,6 +1,4 @@
-using System;
 using System.Threading.Tasks;
-using VerifyTests;
 using VerifyXunit;
 using Xunit;
 
@@ -21,8 +19,6 @@ public class OpenApiContractTests
     private sealed class OpenApiContractFixture
     {
         public Task<string> GetGeneratedContractAsync()
-        {
-            throw new NotImplementedException("OpenAPI contract generation pipeline is not implemented yet.");
-        }
+            => Task.FromResult(ContractTestHarness.GenerateOpenApiContract());
     }
 }

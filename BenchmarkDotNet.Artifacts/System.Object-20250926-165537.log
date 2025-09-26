@@ -1,0 +1,55 @@
+// Validating benchmarks:
+// Benchmark McpPerformanceBenchmarks.SearchPackages: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `SearchPackages` is within a sealed class, Declaring type must be unsealed.
+
+// Benchmark McpPerformanceBenchmarks.SearchPackages: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `SearchPackages` is within a non-visible class, all declaring types must be public.
+
+// Benchmark McpPerformanceBenchmarks.LatestVersion: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `LatestVersion` is within a sealed class, Declaring type must be unsealed.
+
+// Benchmark McpPerformanceBenchmarks.LatestVersion: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `LatestVersion` is within a non-visible class, all declaring types must be public.
+
+// Benchmark McpPerformanceBenchmarks.CheckCompatibility: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `CheckCompatibility` is within a sealed class, Declaring type must be unsealed.
+
+// Benchmark McpPerformanceBenchmarks.CheckCompatibility: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `CheckCompatibility` is within a non-visible class, all declaring types must be public.
+
+// Benchmark McpPerformanceBenchmarks.ListVersions: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `ListVersions` is within a sealed class, Declaring type must be unsealed.
+
+// Benchmark McpPerformanceBenchmarks.ListVersions: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `ListVersions` is within a non-visible class, all declaring types must be public.
+
+// Benchmark McpPerformanceBenchmarks.PackageDetailsTool: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `PackageDetailsTool` is within a sealed class, Declaring type must be unsealed.
+
+// Benchmark McpPerformanceBenchmarks.PackageDetailsTool: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `PackageDetailsTool` is within a non-visible class, all declaring types must be public.
+
+// Benchmark McpPerformanceBenchmarks.PublisherPackagesTool: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `PublisherPackagesTool` is within a sealed class, Declaring type must be unsealed.
+
+// Benchmark McpPerformanceBenchmarks.PublisherPackagesTool: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `PublisherPackagesTool` is within a non-visible class, all declaring types must be public.
+
+// Benchmark McpPerformanceBenchmarks.ScoreInsightsTool: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `ScoreInsightsTool` is within a sealed class, Declaring type must be unsealed.
+
+// Benchmark McpPerformanceBenchmarks.ScoreInsightsTool: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `ScoreInsightsTool` is within a non-visible class, all declaring types must be public.
+
+// Benchmark McpPerformanceBenchmarks.DependencyInspectorTool: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `DependencyInspectorTool` is within a sealed class, Declaring type must be unsealed.
+
+// Benchmark McpPerformanceBenchmarks.DependencyInspectorTool: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `DependencyInspectorTool` is within a non-visible class, all declaring types must be public.
+
+// Benchmark McpPerformanceBenchmarks.BatchAcrossTools: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `BatchAcrossTools` is within a sealed class, Declaring type must be unsealed.
+
+// Benchmark McpPerformanceBenchmarks.BatchAcrossTools: short(Runtime=.NET 9.0, IterationCount=6, LaunchCount=1, WarmupCount=2)
+//    * Benchmarked method `BatchAcrossTools` is within a non-visible class, all declaring types must be public.
+

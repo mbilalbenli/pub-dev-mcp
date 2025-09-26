@@ -1,0 +1,17 @@
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\PubDevMcp.Infrastructure.csproj.AssemblyReference.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\PubDevMcp.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\PubDevMcp.Infrastructure.AssemblyInfoInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\PubDevMcp.Infrastructure.AssemblyInfo.cs
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\PubDevMcp.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\PubDevMcp.Infrastructure.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Release\net9.0\PubDevMcp.Infrastructure.deps.json
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Release\net9.0\PubDevMcp.Infrastructure.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Release\net9.0\PubDevMcp.Infrastructure.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Release\net9.0\PubDevMcp.Application.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Release\net9.0\PubDevMcp.Domain.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Release\net9.0\PubDevMcp.Application.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Release\net9.0\PubDevMcp.Domain.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\PubDevMc.91FB70A3.Up2Date
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\PubDevMcp.Infrastructure.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\refint\PubDevMcp.Infrastructure.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Release\net9.0\ref\PubDevMcp.Infrastructure.dll

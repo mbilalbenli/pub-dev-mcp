@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -20,11 +21,6 @@ namespace PubDevMcp.Infrastructure.ErrorHandling;
 /// </summary>
 public sealed class GlobalExceptionHandler : IExceptionHandler
 {
-    private static readonly JsonSerializerOptions SerializerOptions = new(JsonSerializerDefaults.Web)
-    {
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-    };
-
     private readonly ILogger<GlobalExceptionHandler> _logger;
 
     public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
@@ -54,7 +50,7 @@ public sealed class GlobalExceptionHandler : IExceptionHandler
         await JsonSerializer.SerializeAsync(
                 httpContext.Response.Body,
                 response,
-                SerializerOptions,
+                JsonRpcSerializerContext.Default.JsonRpcErrorResponse,
                 cancellationToken)
             .ConfigureAwait(false);
 
@@ -556,3 +552,12 @@ internal static class JsonRpcContextItemAccessor
         };
     }
 }
+
+[JsonSourceGenerationOptions(
+    GenerationMode = JsonSourceGenerationMode.Metadata,
+    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+    PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+[JsonSerializable(typeof(JsonRpcErrorResponse))]
+[JsonSerializable(typeof(JsonRpcError))]
+[JsonSerializable(typeof(JsonRpcProblemDetail))]
+internal sealed partial class JsonRpcSerializerContext : JsonSerializerContext;
