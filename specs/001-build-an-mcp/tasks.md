@@ -100,7 +100,7 @@
 
 ## Phase 3.7: Integration & Validation
 - [x] T046 Wire health check endpoints (`/health/live`, `/health/ready`) with pub.dev connectivity validation in `src/PubDevMcp.Server/HealthChecks/PubDevHealthCheck.cs`
-- [ ] T047 Create BenchmarkDotNet performance harness validating ≤7s p95 response times in `tests/performance/McpPerformanceBenchmarks.cs`
+- [x] T047 Create BenchmarkDotNet performance harness validating ≤7s p95 response times in `tests/performance/McpPerformanceBenchmarks.cs`
 - [ ] T048 [P] Run all contract tests and verify they now pass after implementation
 - [ ] T049 [P] Run integration test suite validating end-to-end MCP tool invocation scenarios
 - [ ] T050 [P] Execute performance benchmarks and validate NFR-001 compliance (≤5s typical, ≤7s p95)

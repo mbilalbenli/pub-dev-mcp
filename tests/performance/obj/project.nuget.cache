@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "XSTy2/p9BEM=",
-  "success": false,
+  "dgSpecHash": "TCn9sXFT4o8=",
+  "success": true,
   "projectFilePath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\tests\\performance\\PubDevMcp.Tests.Performance.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mbila\\.nuget\\packages\\benchmarkdotnet\\0.15.4\\benchmarkdotnet.0.15.4.nupkg.sha512",
@@ -71,17 +71,5 @@
     "C:\\Users\\mbila\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\system.text.json\\9.0.9\\system.text.json.9.0.9.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.Extensions.Configuration.Memory. No packages exist with this id in source(s): nuget.org",
-      "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\tests\\performance\\PubDevMcp.Tests.Performance.csproj",
-      "filePath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\tests\\performance\\PubDevMcp.Tests.Performance.csproj",
-      "libraryId": "Microsoft.Extensions.Configuration.Memory",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  "logs": []
 }
