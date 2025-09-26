@@ -47,7 +47,12 @@
 ## Constitution Check
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **Security-First MCP Integration**: Document OAuth 2.1 + PKCE flows, RBAC tool scopes, JSON-RPC schema validation, and rate limiting coverage.
+- [ ] **Performance & Resilience Discipline**: Define latency/throughput targets, identify `System.IO.Pipelines`/`Span<T>` usage, and list Polly policies plus centralized exception mapping.
+- [ ] **Observable Operations & Traceability**: Plan Serilog structured logs, source-generated `LoggerMessage`, OpenTelemetry traces/metrics, and health/diagnostic endpoints.
+- [ ] **Architectural Integrity & Modularity**: Confirm Clean Architecture boundaries, CQRS/vertical slice layout, `[McpServerTool]` registrations, and Options pattern configuration.
+- [ ] **Test & Compliance Driven Delivery**: Enumerate failing xUnit/TestHost/JSON-RPC compliance tests, security/performance gates, and BenchmarkDotNet/QA activities needed before implementation.
+- [ ] Constitution deviations captured with mitigation tasks or get blocked until resolved.
 
 ## Project Structure
 
@@ -209,4 +214,4 @@ ios/ or android/
 - [ ] Complexity deviations documented
 
 ---
-*Based on Constitution v2.1.1 - See `/memory/constitution.md`*
+*Based on Constitution v1.0.0 - See `/memory/constitution.md`*
