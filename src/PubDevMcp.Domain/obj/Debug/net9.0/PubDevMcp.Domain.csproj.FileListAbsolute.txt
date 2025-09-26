@@ -1,0 +1,13 @@
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\bin\Debug\net9.0\PubDevMcp.Domain.deps.json
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\bin\Debug\net9.0\PubDevMcp.Domain.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\bin\Debug\net9.0\PubDevMcp.Domain.pdb
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\obj\Debug\net9.0\PubDevMcp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\obj\Debug\net9.0\PubDevMcp.Domain.AssemblyInfoInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\obj\Debug\net9.0\PubDevMcp.Domain.AssemblyInfo.cs
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\obj\Debug\net9.0\PubDevMcp.Domain.csproj.CoreCompileInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\obj\Debug\net9.0\PubDevMcp.Domain.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\obj\Debug\net9.0\refint\PubDevMcp.Domain.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\obj\Debug\net9.0\PubDevMcp.Domain.pdb
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\obj\Debug\net9.0\ref\PubDevMcp.Domain.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\bin\Debug\net9.0\PubDevMcp.Domain.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Domain\obj\Debug\net9.0\PubDevMcp.Domain.xml

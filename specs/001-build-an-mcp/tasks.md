@@ -41,34 +41,34 @@
 - Paths shown below assume single project with Clean Architecture structure from plan.md
 
 ## Phase 3.1: Setup
-- [ ] T001 Create .NET 9 solution and project structure per implementation plan at `src/PubDevMcp.Server/`, `src/PubDevMcp.Application/`, `src/PubDevMcp.Domain/`, `src/PubDevMcp.Infrastructure/` and `tests/contract/`, `tests/integration/`, `tests/compliance/`, `tests/performance/`
-- [ ] T002 Initialize .NET 9 projects with NuGet dependencies: MediatR, Polly, Serilog, OpenTelemetry, FluentValidation, System.Text.Json, BenchmarkDotNet, xUnit, FluentAssertions in appropriate project files
-- [ ] T003 [P] Configure EditorConfig, Directory.Build.props, and global.json for C# 13/.NET 9 conventions at repository root
+- [x] T001 Create .NET 9 solution and project structure per implementation plan at `src/PubDevMcp.Server/`, `src/PubDevMcp.Application/`, `src/PubDevMcp.Domain/`, `src/PubDevMcp.Infrastructure/` and `tests/contract/`, `tests/integration/`, `tests/compliance/`, `tests/performance/`
+- [x] T002 Initialize .NET 9 projects with NuGet dependencies: MediatR, Polly, Serilog, OpenTelemetry, FluentValidation, System.Text.Json, BenchmarkDotNet, xUnit, FluentAssertions in appropriate project files
+- [x] T003 [P] Configure EditorConfig, Directory.Build.props, and global.json for C# 13/.NET 9 conventions at repository root
 
 ## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
 **CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
-- [ ] T004 [P] Create OpenAPI contract validation tests for all 8 MCP tools in `tests/contract/OpenApiContractTests.cs` using Approval testing to verify schema compliance
-- [ ] T005 [P] Create JSON-RPC 2.0 compliance test suite covering request/response validation and error mapping in `tests/compliance/JsonRpcComplianceTests.cs`
-- [ ] T006 [P] Create MCP transport tests for stdio and HTTP modes using TestHost in `tests/integration/McpTransportTests.cs`
-- [ ] T007 [P] Create search packages contract test validating 10-result limit and pagination hints in `tests/contract/SearchPackagesContractTests.cs`
-- [ ] T008 [P] Create latest version contract test for stable version retrieval in `tests/contract/LatestVersionContractTests.cs`
-- [ ] T009 [P] Create compatibility check contract test for Flutter SDK constraint evaluation in `tests/contract/CheckCompatibilityContractTests.cs`
-- [ ] T010 [P] Create version list contract test including prerelease filtering in `tests/contract/ListVersionsContractTests.cs`
-- [ ] T011 [P] Create package details contract test for metadata retrieval in `tests/contract/PackageDetailsContractTests.cs`
-- [ ] T012 [P] Create publisher packages contract test for publisher-scoped search in `tests/contract/PublisherPackagesContractTests.cs`
-- [ ] T013 [P] Create score insights contract test for component score breakdown in `tests/contract/ScoreInsightsContractTests.cs`
-- [ ] T014 [P] Create dependency inspector contract test for full dependency tree generation in `tests/contract/DependencyInspectorContractTests.cs`
-- [ ] T015 [P] Create resilience policy integration tests simulating pub.dev failures and retry scenarios in `tests/integration/ResiliencePolicyTests.cs`
-- [ ] T016 [P] Create observability integration tests validating Serilog structured logging and OpenTelemetry traces in `tests/integration/ObservabilityTests.cs`
+- [x] T004 [P] Create OpenAPI contract validation tests for all 8 MCP tools in `tests/contract/OpenApiContractTests.cs` using Approval testing to verify schema compliance
+- [x] T005 [P] Create JSON-RPC 2.0 compliance test suite covering request/response validation and error mapping in `tests/compliance/JsonRpcComplianceTests.cs`
+- [x] T006 [P] Create MCP transport tests for stdio and HTTP modes using TestHost in `tests/integration/McpTransportTests.cs`
+- [x] T007 [P] Create search packages contract test validating 10-result limit and pagination hints in `tests/contract/SearchPackagesContractTests.cs`
+- [x] T008 [P] Create latest version contract test for stable version retrieval in `tests/contract/LatestVersionContractTests.cs`
+- [x] T009 [P] Create compatibility check contract test for Flutter SDK constraint evaluation in `tests/contract/CheckCompatibilityContractTests.cs`
+- [x] T010 [P] Create version list contract test including prerelease filtering in `tests/contract/ListVersionsContractTests.cs`
+- [x] T011 [P] Create package details contract test for metadata retrieval in `tests/contract/PackageDetailsContractTests.cs`
+- [x] T012 [P] Create publisher packages contract test for publisher-scoped search in `tests/contract/PublisherPackagesContractTests.cs`
+- [x] T013 [P] Create score insights contract test for component score breakdown in `tests/contract/ScoreInsightsContractTests.cs`
+- [x] T014 [P] Create dependency inspector contract test for full dependency tree generation in `tests/contract/DependencyInspectorContractTests.cs`
+- [x] T015 [P] Create resilience policy integration tests simulating pub.dev failures and retry scenarios in `tests/integration/ResiliencePolicyTests.cs`
+- [x] T016 [P] Create observability integration tests validating Serilog structured logging and OpenTelemetry traces in `tests/integration/ObservabilityTests.cs`
 
 ## Phase 3.3: Core Domain Models (ONLY after tests are failing)
-- [ ] T017 [P] Implement PackageSummary domain entity in `src/PubDevMcp.Domain/Entities/PackageSummary.cs`
-- [ ] T018 [P] Implement VersionDetail domain entity in `src/PubDevMcp.Domain/Entities/VersionDetail.cs`
-- [ ] T019 [P] Implement SearchResultSet domain entity in `src/PubDevMcp.Domain/Entities/SearchResultSet.cs`
-- [ ] T020 [P] Implement CompatibilityRequest and CompatibilityResult domain entities in `src/PubDevMcp.Domain/Entities/Compatibility.cs`
-- [ ] T021 [P] Implement DependencyNode and DependencyGraph domain entities in `src/PubDevMcp.Domain/Entities/DependencyGraph.cs`
-- [ ] T022 [P] Implement ScoreInsight domain entity in `src/PubDevMcp.Domain/Entities/ScoreInsight.cs`
-- [ ] T023 [P] Implement AuditLogEntry domain entity in `src/PubDevMcp.Domain/Entities/AuditLogEntry.cs`
+- [x] T017 [P] Implement PackageSummary domain entity in `src/PubDevMcp.Domain/Entities/PackageSummary.cs`
+- [x] T018 [P] Implement VersionDetail domain entity in `src/PubDevMcp.Domain/Entities/VersionDetail.cs`
+- [x] T019 [P] Implement SearchResultSet domain entity in `src/PubDevMcp.Domain/Entities/SearchResultSet.cs`
+- [x] T020 [P] Implement CompatibilityRequest and CompatibilityResult domain entities in `src/PubDevMcp.Domain/Entities/Compatibility.cs`
+- [x] T021 [P] Implement DependencyNode and DependencyGraph domain entities in `src/PubDevMcp.Domain/Entities/DependencyGraph.cs`
+- [x] T022 [P] Implement ScoreInsight domain entity in `src/PubDevMcp.Domain/Entities/ScoreInsight.cs`
+- [x] T023 [P] Implement AuditLogEntry domain entity in `src/PubDevMcp.Domain/Entities/AuditLogEntry.cs`
 
 ## Phase 3.4: Application Layer (Vertical Slices)
 - [ ] T024 [P] Create SearchPackages MediatR handler with pub.dev API integration in `src/PubDevMcp.Application/Features/SearchPackages/SearchPackagesHandler.cs`

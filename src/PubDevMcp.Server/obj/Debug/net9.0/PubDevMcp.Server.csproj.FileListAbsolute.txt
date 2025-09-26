@@ -1,0 +1,16 @@
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\bin\Debug\net9.0\PubDevMcp.Server.exe
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\bin\Debug\net9.0\PubDevMcp.Server.deps.json
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\bin\Debug\net9.0\PubDevMcp.Server.runtimeconfig.json
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\bin\Debug\net9.0\PubDevMcp.Server.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\bin\Debug\net9.0\PubDevMcp.Server.pdb
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\PubDevMcp.Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\PubDevMcp.Server.AssemblyInfoInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\PubDevMcp.Server.AssemblyInfo.cs
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\PubDevMcp.Server.csproj.CoreCompileInputs.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\PubDevMcp.Server.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\refint\PubDevMcp.Server.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\PubDevMcp.Server.pdb
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\PubDevMcp.Server.genruntimeconfig.cache
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\ref\PubDevMcp.Server.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\bin\Debug\net9.0\PubDevMcp.Server.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Server\obj\Debug\net9.0\PubDevMcp.Server.xml
