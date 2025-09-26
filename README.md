@@ -86,7 +86,7 @@ dotnet run --configuration Release
 
 - **Transports:** stdio, http
 - **License:** MIT (add `LICENSE` file before publishing)
-- **Maintainer Contact:** noreply@github.com
+- **Maintainer Contact:** GitHub Issues
 - **Upstream Docs:** [`quickstart.md`](specs/001-build-an-mcp/quickstart.md)
 
 Prior to submission:
@@ -113,4 +113,4 @@ tests/
 
 ## Support & Feedback
 
-Questions or issues? Open a GitHub issue or reach out to the maintainer listed in the registry metadata. Contributions are welcome via pull requests once the repository is public.
+Questions or issues? Please open a GitHub issue at https://github.com/mbilalbenli/pub-dev-mcp/issues. Contributions are welcome via pull requests.
