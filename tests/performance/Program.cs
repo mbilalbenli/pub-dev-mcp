@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using BenchmarkDotNet.Running;
+using PubDevMcp.Tests.Performance;
+
+var summary = BenchmarkRunner.Run<McpPerformanceBenchmarks>();
+PerformanceBudget.Assert(summary, TimeSpan.FromSeconds(7));

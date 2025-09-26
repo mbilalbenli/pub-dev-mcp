@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Z3dg2fcGh6s=",
+  "dgSpecHash": "2ToXz7SxbCA=",
   "success": true,
   "projectFilePath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Infrastructure\\PubDevMcp.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -16,8 +16,8 @@
     "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0\\microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0\\microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.diagnostics.abstractions\\9.0.0\\microsoft.extensions.diagnostics.abstractions.9.0.0.nupkg.sha512",
-    "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\8.0.0\\microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\8.0.0\\microsoft.extensions.hosting.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\9.0.0\\microsoft.extensions.fileproviders.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\9.0.0\\microsoft.extensions.hosting.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.logging\\9.0.0\\microsoft.extensions.logging.9.0.0.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.0\\microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\microsoft.extensions.logging.configuration\\9.0.0\\microsoft.extensions.logging.configuration.9.0.0.nupkg.sha512",
@@ -32,6 +32,9 @@
     "C:\\Users\\mbila\\.nuget\\packages\\opentelemetry\\1.12.0\\opentelemetry.1.12.0.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\opentelemetry.api\\1.12.0\\opentelemetry.api.1.12.0.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\opentelemetry.api.providerbuilderextensions\\1.12.0\\opentelemetry.api.providerbuilderextensions.1.12.0.nupkg.sha512",
+    "C:\\Users\\mbila\\.nuget\\packages\\opentelemetry.exporter.console\\1.12.0\\opentelemetry.exporter.console.1.12.0.nupkg.sha512",
+    "C:\\Users\\mbila\\.nuget\\packages\\opentelemetry.exporter.opentelemetryprotocol\\1.12.0\\opentelemetry.exporter.opentelemetryprotocol.1.12.0.nupkg.sha512",
+    "C:\\Users\\mbila\\.nuget\\packages\\opentelemetry.extensions.hosting\\1.12.0\\opentelemetry.extensions.hosting.1.12.0.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\polly\\8.6.3\\polly.8.6.3.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\polly.core\\8.6.3\\polly.core.8.6.3.nupkg.sha512",
     "C:\\Users\\mbila\\.nuget\\packages\\serilog\\4.3.0\\serilog.4.3.0.nupkg.sha512",
