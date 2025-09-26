@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -17,6 +18,15 @@ public sealed class LatestVersionHandler : IRequestHandler<LatestVersionQuery, V
         _apiClient = apiClient;
     }
 
-    public Task<VersionDetail> Handle(LatestVersionQuery request, CancellationToken cancellationToken)
-        => _apiClient.GetLatestVersionAsync(request.Package, cancellationToken);
+    public async Task<VersionDetail> Handle(LatestVersionQuery request, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+        ArgumentException.ThrowIfNullOrWhiteSpace(request.Package);
+
+        var package = request.Package.Trim();
+
+        return await _apiClient
+            .GetLatestVersionAsync(package, cancellationToken)
+            .ConfigureAwait(false);
+    }
 }

@@ -12,3 +12,10 @@ C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\P
 C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\ref\PubDevMcp.Infrastructure.dll
 C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Infrastructure.xml
 C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMcp.Infrastructure.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Application.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Domain.dll
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Application.pdb
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Application.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Domain.pdb
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\bin\Debug\net9.0\PubDevMcp.Domain.xml
+C:\Repos\mcp_servers\pub_dev_mcp\src\PubDevMcp.Infrastructure\obj\Debug\net9.0\PubDevMc.91FB70A3.Up2Date

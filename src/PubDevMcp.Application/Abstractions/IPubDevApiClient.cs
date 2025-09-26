@@ -7,7 +7,7 @@ namespace PubDevMcp.Application.Abstractions;
 
 public interface IPubDevApiClient
 {
-    Task<SearchResultSet> SearchPackagesAsync(string query, CancellationToken cancellationToken);
+    Task<SearchResultSet> SearchPackagesAsync(string query, bool includePrerelease, string? sdkConstraint, CancellationToken cancellationToken);
 
     Task<VersionDetail> GetLatestVersionAsync(string package, CancellationToken cancellationToken);
 
@@ -19,5 +19,5 @@ public interface IPubDevApiClient
 
     Task<ScoreInsight> GetScoreInsightAsync(string package, CancellationToken cancellationToken);
 
-    Task<DependencyGraph> InspectDependenciesAsync(string package, string? version, CancellationToken cancellationToken);
+    Task<DependencyGraph> InspectDependenciesAsync(string package, string? version, bool includeDevDependencies, CancellationToken cancellationToken);
 }

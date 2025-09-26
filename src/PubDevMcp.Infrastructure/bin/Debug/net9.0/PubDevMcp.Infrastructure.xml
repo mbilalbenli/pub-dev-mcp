@@ -4,5 +4,68 @@
         <name>PubDevMcp.Infrastructure</name>
     </assembly>
     <members>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.GlobalExceptionHandler">
+            <summary>
+            Centralized exception handler that normalizes unhandled errors into JSON-RPC compliant responses.
+            </summary>
+        </member>
+        <member name="M:PubDevMcp.Infrastructure.ErrorHandling.GlobalExceptionHandler.TryHandleAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcErrorMapper">
+            <summary>
+            Provides helper functionality for translating exceptions into JSON-RPC errors.
+            </summary>
+        </member>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcErrorDescriptor">
+            <summary>
+            Captures the normalized JSON-RPC error representation for downstream serialization.
+            </summary>
+        </member>
+        <member name="M:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcErrorDescriptor.#ctor(System.Int32,System.Int32,System.String,System.String,System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String[]},System.String,System.String,System.String,Microsoft.Extensions.Logging.LogLevel)">
+            <summary>
+            Captures the normalized JSON-RPC error representation for downstream serialization.
+            </summary>
+        </member>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcErrorCodes">
+            <summary>
+            Constants describing the standard JSON-RPC error codes used within the service.
+            </summary>
+        </member>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcException">
+            <summary>
+            Base exception type for domain-specific JSON-RPC failures.
+            </summary>
+        </member>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcInvalidRequestException">
+            <summary>
+            Exception describing invalid JSON-RPC requests.
+            </summary>
+        </member>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcMethodNotFoundException">
+            <summary>
+            Exception raised when a requested JSON-RPC method is unknown.
+            </summary>
+        </member>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcInvalidParamsException">
+            <summary>
+            Exception describing invalid JSON-RPC parameters.
+            </summary>
+        </member>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcUpstreamException">
+            <summary>
+            Exception raised when an upstream dependency fails.
+            </summary>
+        </member>
+        <member name="T:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcErrorResponse">
+            <summary>
+            Provides strongly-typed JSON-RPC error payloads.
+            </summary>
+        </member>
+        <member name="M:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcErrorResponse.#ctor(System.String,PubDevMcp.Infrastructure.ErrorHandling.JsonRpcError,System.String)">
+            <summary>
+            Provides strongly-typed JSON-RPC error payloads.
+            </summary>
+        </member>
     </members>
 </doc>
