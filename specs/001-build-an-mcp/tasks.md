@@ -88,18 +88,18 @@
 - [x] T036 Configure IMemoryCache for score insights and dependency graph caching with 10-minute TTL in `src/PubDevMcp.Infrastructure/Services/CacheService.cs`
 - [x] T037 Implement centralized exception handler mapping to JSON-RPC Problem Details in `src/PubDevMcp.Infrastructure/ErrorHandling/GlobalExceptionHandler.cs`
 - [x] T038 Configure Serilog with source-generated LoggerMessage and structured JSON output in `src/PubDevMcp.Infrastructure/Logging/LoggingConfiguration.cs`
-- [ ] T039 Configure OpenTelemetry traces, metrics, and activity sources for MCP request tracking in `src/PubDevMcp.Infrastructure/Telemetry/TelemetryConfiguration.cs`
+- [x] T039 Configure OpenTelemetry traces, metrics, and activity sources for MCP request tracking in `src/PubDevMcp.Infrastructure/Telemetry/TelemetryConfiguration.cs`
 
 ## Phase 3.6: Presentation Layer
-- [ ] T040 Create MCP tool attributes and registration for all 8 tools in `src/PubDevMcp.Server/Tools/McpTools.cs`
-- [ ] T041 Implement JSON-RPC 2.0 request/response pipeline with schema validation in `src/PubDevMcp.Server/JsonRpc/JsonRpcPipeline.cs`
-- [ ] T042 Configure dependency injection container with all services, policies, and Options pattern in `src/PubDevMcp.Server/Configuration/ServiceConfiguration.cs`
-- [ ] T043 Implement stdio transport for local MCP client connections in `src/PubDevMcp.Server/Transports/StdioTransport.cs`
-- [ ] T044 Implement HTTP transport for containerized deployments with health checks in `src/PubDevMcp.Server/Transports/HttpTransport.cs`
-- [ ] T045 Create Program.cs with host builder, configuration, and transport selection logic in `src/PubDevMcp.Server/Program.cs`
+- [x] T040 Create MCP tool attributes and registration for all 8 tools in `src/PubDevMcp.Server/Tools/McpTools.cs`
+- [x] T041 Implement JSON-RPC 2.0 request/response pipeline with schema validation in `src/PubDevMcp.Server/JsonRpc/JsonRpcPipeline.cs`
+- [x] T042 Configure dependency injection container with all services, policies, and Options pattern in `src/PubDevMcp.Server/Configuration/ServiceConfiguration.cs`
+- [x] T043 Implement stdio transport for local MCP client connections in `src/PubDevMcp.Server/Transports/StdioTransport.cs`
+- [x] T044 Implement HTTP transport for containerized deployments with health checks in `src/PubDevMcp.Server/Transports/HttpTransport.cs`
+- [x] T045 Create Program.cs with host builder, configuration, and transport selection logic in `src/PubDevMcp.Server/Program.cs`
 
 ## Phase 3.7: Integration & Validation
-- [ ] T046 Wire health check endpoints (`/health/live`, `/health/ready`) with pub.dev connectivity validation in `src/PubDevMcp.Server/HealthChecks/PubDevHealthCheck.cs`
+- [x] T046 Wire health check endpoints (`/health/live`, `/health/ready`) with pub.dev connectivity validation in `src/PubDevMcp.Server/HealthChecks/PubDevHealthCheck.cs`
 - [ ] T047 Create BenchmarkDotNet performance harness validating ≤7s p95 response times in `tests/performance/McpPerformanceBenchmarks.cs`
 - [ ] T048 [P] Run all contract tests and verify they now pass after implementation
 - [ ] T049 [P] Run integration test suite validating end-to-end MCP tool invocation scenarios
