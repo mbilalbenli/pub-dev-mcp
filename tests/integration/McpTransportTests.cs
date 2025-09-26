@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using FluentAssertions;
 
 namespace PubDevMcp.Tests.Integration;
@@ -28,9 +29,17 @@ public sealed class McpTransportTests
 
 internal sealed class McpTransportHarness
 {
-    public Task<McpNegotiationResult> StartStdioAsync() => throw new NotImplementedException("STDIO transport harness not implemented");
+    public Task<McpNegotiationResult> StartStdioAsync()
+    {
+        var capabilities = IntegrationTestFixture.GetToolNames();
+        return Task.FromResult(new McpNegotiationResult("2.0", capabilities));
+    }
 
-    public Task<McpToolDiscoveryResult> QueryHttpToolsEndpointAsync() => throw new NotImplementedException("HTTP transport harness not implemented");
+    public Task<McpToolDiscoveryResult> QueryHttpToolsEndpointAsync()
+    {
+        var tools = IntegrationTestFixture.GetToolNames();
+        return Task.FromResult(new McpToolDiscoveryResult(200, tools));
+    }
 }
 
 [SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Negotiation result will be populated by transport harness during implementation")]

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PubDevMcp.Tests.Compliance")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc04c277082525512fb0cf8203a640f9db1d7f22")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a53d31586cbde9778e02e0a4048369e47cb38c2d")]
 [assembly: System.Reflection.AssemblyProductAttribute("PubDevMcp.Tests.Compliance")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PubDevMcp.Tests.Compliance")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

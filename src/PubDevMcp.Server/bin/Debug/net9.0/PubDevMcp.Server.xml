@@ -4,5 +4,188 @@
         <name>PubDevMcp.Server</name>
     </assembly>
     <members>
+        <member name="P:PubDevMcp.Server.JsonRpc.JsonRpcNodeSerializerContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.JsonRpc.JsonRpcNodeSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.JsonRpc.JsonRpcNodeSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:PubDevMcp.Server.JsonRpc.JsonRpcNodeSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:PubDevMcp.Server.JsonRpc.JsonRpcNodeSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PubDevMcp.Server.JsonRpc.JsonRpcNodeSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.Boolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.Double">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.CheckCompatibilityQuery">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.DependencyInspectorQuery">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.LatestVersionQuery">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.ListVersionsQuery">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.PackageDetailsQuery">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.PublisherPackagesQuery">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.ScoreInsightsQuery">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.SearchPackagesQuery">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.CompatibilityRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.CompatibilityResult">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.DependencyGraph">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.DependencyNode">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.PackageDetails">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.PackageSummary">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.ScoreInsight">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.SearchResultSet">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.VersionDetail">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.IReadOnlyDictionaryStringString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.IReadOnlyListDependencyNode">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.IReadOnlyListPackageSummary">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.IReadOnlyListVersionDetail">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.IReadOnlyListString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.DateTimeOffset">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.Uri">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Server.Tools.McpToolSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:PubDevMcp.Server.Tools.McpToolSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:PubDevMcp.Server.Tools.McpToolSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PubDevMcp.Server.Tools.McpToolSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>

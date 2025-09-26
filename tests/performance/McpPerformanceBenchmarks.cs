@@ -144,7 +144,7 @@ internal sealed class McpPerformanceBenchmarks : IDisposable
         var batch = new JsonArray();
         foreach (var request in requests)
         {
-            batch.Add(request);
+            batch.Add((JsonNode?)request);
         }
 
         return batch.ToJsonString(_serializerOptions);

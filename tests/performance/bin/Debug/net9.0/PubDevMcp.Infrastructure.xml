@@ -67,5 +67,188 @@
             Provides strongly-typed JSON-RPC error payloads.
             </summary>
         </member>
+        <member name="P:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.JsonRpcError">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.JsonRpcErrorResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.JsonRpcProblemDetail">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.IReadOnlyDictionaryStringStringArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.StringArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PubDevMcp.Infrastructure.ErrorHandling.JsonRpcSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.Double">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.NullableDouble">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.PackageEnvironment">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.PackagePubspec">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.PackageResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.PackageVersionResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.PublisherPackageItem">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.PublisherPackagesResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.ScoreResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.SearchPackage">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.SearchResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.SearchScore">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.IReadOnlyDictionaryStringJsonElement">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.IReadOnlyListPackageVersionResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.IReadOnlyListPublisherPackageItem">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.IReadOnlyListSearchPackage">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.IReadOnlyListString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.DateTimeOffset">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.JsonElement">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.NullableInt32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PubDevMcp.Infrastructure.Services.PubDevApiClient.PubDevApiClientJsonSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
     </members>
 </doc>

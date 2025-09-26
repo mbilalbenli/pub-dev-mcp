@@ -4,6 +4,345 @@
     "C:\\Repos\\mcp_servers\\pub_dev_mcp\\tests\\integration\\PubDevMcp.Tests.Integration.csproj": {}
   },
   "projects": {
+    "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Application\\PubDevMcp.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Application\\PubDevMcp.Application.csproj",
+        "projectName": "PubDevMcp.Application",
+        "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Application\\PubDevMcp.Application.csproj",
+        "packagesPath": "C:\\Users\\mbila\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mbila\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain\\PubDevMcp.Domain.csproj": {
+                "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain\\PubDevMcp.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "allWarningsAsErrors": true,
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[13.0.0, )"
+            },
+            "NuGet.Versioning": {
+              "target": "Package",
+              "version": "[6.9.1, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain\\PubDevMcp.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain\\PubDevMcp.Domain.csproj",
+        "projectName": "PubDevMcp.Domain",
+        "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain\\PubDevMcp.Domain.csproj",
+        "packagesPath": "C:\\Users\\mbila\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mbila\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "allWarningsAsErrors": true,
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Infrastructure\\PubDevMcp.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Infrastructure\\PubDevMcp.Infrastructure.csproj",
+        "projectName": "PubDevMcp.Infrastructure",
+        "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Infrastructure\\PubDevMcp.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\mbila\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mbila\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Application\\PubDevMcp.Application.csproj": {
+                "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Application\\PubDevMcp.Application.csproj"
+              },
+              "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain\\PubDevMcp.Domain.csproj": {
+                "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain\\PubDevMcp.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "allWarningsAsErrors": true,
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "OpenTelemetry": {
+              "target": "Package",
+              "version": "[1.12.0, )"
+            },
+            "OpenTelemetry.Exporter.Console": {
+              "target": "Package",
+              "version": "[1.12.0, )"
+            },
+            "OpenTelemetry.Exporter.OpenTelemetryProtocol": {
+              "target": "Package",
+              "version": "[1.12.0, )"
+            },
+            "OpenTelemetry.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[1.12.0, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[8.6.3, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "Serilog.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Server\\PubDevMcp.Server.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Server\\PubDevMcp.Server.csproj",
+        "projectName": "PubDevMcp.Server",
+        "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Server\\PubDevMcp.Server.csproj",
+        "packagesPath": "C:\\Users\\mbila\\.nuget\\packages\\",
+        "outputPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Server\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mbila\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Application\\PubDevMcp.Application.csproj": {
+                "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Application\\PubDevMcp.Application.csproj"
+              },
+              "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Infrastructure\\PubDevMcp.Infrastructure.csproj": {
+                "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Infrastructure\\PubDevMcp.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "allWarningsAsErrors": true,
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[13.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Repos\\mcp_servers\\pub_dev_mcp\\tests\\integration\\PubDevMcp.Tests.Integration.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -25,7 +364,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Server\\PubDevMcp.Server.csproj": {
+                "projectPath": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Server\\PubDevMcp.Server.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -82,6 +425,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

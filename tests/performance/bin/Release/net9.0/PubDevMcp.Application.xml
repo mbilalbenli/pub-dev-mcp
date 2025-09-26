@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PubDevMcp.Application</name>
+    </assembly>
+    <members>
+        <member name="M:PubDevMcp.Application.Validators.ValidationRules.PackageNameRegexFactory">
+            <remarks>
+            Pattern:<br/>
+            <code>^[a-z0-9_]+$</code><br/>
+            Options:<br/>
+            <code>RegexOptions.CultureInvariant | RegexOptions.NonBacktracking</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match a character in the set [0-9_a-z] greedily at least once.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:PubDevMcp.Application.Validators.ValidationRules.PublisherIdRegexFactory">
+            <remarks>
+            Pattern:<br/>
+            <code>^[a-z0-9._-]+$</code><br/>
+            Options:<br/>
+            <code>RegexOptions.CultureInvariant | RegexOptions.NonBacktracking</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match a character in the set [-.0-9_a-z] greedily at least once.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PackageNameRegexFactory_0">
+            <summary>Caches a <see cref="T:System.Text.RegularExpressions.Regex"/> instance for the PackageNameRegexFactory method.</summary>
+            <remarks>A custom Regex-derived type could not be generated because RegexOptions.NonBacktracking isn't supported.</remarks>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.PackageNameRegexFactory_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PublisherIdRegexFactory_1">
+            <summary>Caches a <see cref="T:System.Text.RegularExpressions.Regex"/> instance for the PublisherIdRegexFactory method.</summary>
+            <remarks>A custom Regex-derived type could not be generated because RegexOptions.NonBacktracking isn't supported.</remarks>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.PublisherIdRegexFactory_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+    </members>
+</doc>

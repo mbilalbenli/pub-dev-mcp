@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -39,53 +41,55 @@ internal sealed class McpToolAttribute : Attribute
 
 internal static class McpTools
 {
-    private static JsonSerializerOptions SerializerOptions { get; } = new(JsonSerializerDefaults.Web)
+    private static readonly McpToolSerializerContext SerializerContext = new(new JsonSerializerOptions(JsonSerializerDefaults.Web)
     {
         PropertyNameCaseInsensitive = true,
-        DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
-    };
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    });
 
-    private static readonly Lazy<IReadOnlyDictionary<string, McpToolDescriptor>> Registry = new(() => BuildRegistry(SerializerOptions));
+    private static JsonSerializerOptions SerializerOptions => SerializerContext.Options;
+
+    private static readonly Lazy<IReadOnlyDictionary<string, McpToolDescriptor>> Registry = new(() => BuildRegistry(SerializerContext));
 
     [SuppressMessage("Performance", "CA1823", Justification = "Factory discovered via reflection.")]
     [McpTool("search_packages", "Search pub.dev packages by keyword and return the top 10 results.")]
-    private static readonly Func<JsonSerializerOptions, McpToolAttribute, McpToolDescriptor> SearchPackagesFactory =
-        (options, metadata) => McpToolDescriptor.Create<SearchPackagesQuery, SearchResultSet>(metadata, options);
+    private static readonly Func<McpToolSerializerContext, McpToolAttribute, McpToolDescriptor> SearchPackagesFactory =
+        (context, metadata) => CreateDescriptor<SearchPackagesQuery, SearchResultSet>(context, metadata);
 
     [SuppressMessage("Performance", "CA1823", Justification = "Factory discovered via reflection.")]
     [McpTool("latest_version", "Retrieve the newest stable version for a package.")]
-    private static readonly Func<JsonSerializerOptions, McpToolAttribute, McpToolDescriptor> LatestVersionFactory =
-        (options, metadata) => McpToolDescriptor.Create<LatestVersionQuery, VersionDetail>(metadata, options);
+    private static readonly Func<McpToolSerializerContext, McpToolAttribute, McpToolDescriptor> LatestVersionFactory =
+        (context, metadata) => CreateDescriptor<LatestVersionQuery, VersionDetail>(context, metadata);
 
     [SuppressMessage("Performance", "CA1823", Justification = "Factory discovered via reflection.")]
     [McpTool("check_compatibility", "Evaluate package compatibility for a Flutter SDK version.")]
-    private static readonly Func<JsonSerializerOptions, McpToolAttribute, McpToolDescriptor> CheckCompatibilityFactory =
-        (options, metadata) => McpToolDescriptor.Create<CheckCompatibilityQuery, CompatibilityResult>(metadata, options);
+    private static readonly Func<McpToolSerializerContext, McpToolAttribute, McpToolDescriptor> CheckCompatibilityFactory =
+        (context, metadata) => CreateDescriptor<CheckCompatibilityQuery, CompatibilityResult>(context, metadata);
 
     [SuppressMessage("Performance", "CA1823", Justification = "Factory discovered via reflection.")]
     [McpTool("list_versions", "List package versions in descending order, optionally including prereleases.")]
-    private static readonly Func<JsonSerializerOptions, McpToolAttribute, McpToolDescriptor> ListVersionsFactory =
-        (options, metadata) => McpToolDescriptor.Create<ListVersionsQuery, IReadOnlyList<VersionDetail>>(metadata, options);
+    private static readonly Func<McpToolSerializerContext, McpToolAttribute, McpToolDescriptor> ListVersionsFactory =
+        (context, metadata) => CreateDescriptor<ListVersionsQuery, IReadOnlyList<VersionDetail>>(context, metadata);
 
     [SuppressMessage("Performance", "CA1823", Justification = "Factory discovered via reflection.")]
     [McpTool("package_details", "Return package metadata, links, and latest stable release information.")]
-    private static readonly Func<JsonSerializerOptions, McpToolAttribute, McpToolDescriptor> PackageDetailsFactory =
-        (options, metadata) => McpToolDescriptor.Create<PackageDetailsQuery, PackageDetails>(metadata, options);
+    private static readonly Func<McpToolSerializerContext, McpToolAttribute, McpToolDescriptor> PackageDetailsFactory =
+        (context, metadata) => CreateDescriptor<PackageDetailsQuery, PackageDetails>(context, metadata);
 
     [SuppressMessage("Performance", "CA1823", Justification = "Factory discovered via reflection.")]
     [McpTool("publisher_packages", "Retrieve packages owned by a specific publisher.")]
-    private static readonly Func<JsonSerializerOptions, McpToolAttribute, McpToolDescriptor> PublisherPackagesFactory =
-        (options, metadata) => McpToolDescriptor.Create<PublisherPackagesQuery, IReadOnlyList<PackageSummary>>(metadata, options);
+    private static readonly Func<McpToolSerializerContext, McpToolAttribute, McpToolDescriptor> PublisherPackagesFactory =
+        (context, metadata) => CreateDescriptor<PublisherPackagesQuery, IReadOnlyList<PackageSummary>>(context, metadata);
 
     [SuppressMessage("Performance", "CA1823", Justification = "Factory discovered via reflection.")]
     [McpTool("score_insights", "Obtain overall and component score insights for a package.")]
-    private static readonly Func<JsonSerializerOptions, McpToolAttribute, McpToolDescriptor> ScoreInsightsFactory =
-        (options, metadata) => McpToolDescriptor.Create<ScoreInsightsQuery, ScoreInsight>(metadata, options);
+    private static readonly Func<McpToolSerializerContext, McpToolAttribute, McpToolDescriptor> ScoreInsightsFactory =
+        (context, metadata) => CreateDescriptor<ScoreInsightsQuery, ScoreInsight>(context, metadata);
 
     [SuppressMessage("Performance", "CA1823", Justification = "Factory discovered via reflection.")]
     [McpTool("dependency_inspector", "Inspect the dependency graph for a package version.")]
-    private static readonly Func<JsonSerializerOptions, McpToolAttribute, McpToolDescriptor> DependencyInspectorFactory =
-        (options, metadata) => McpToolDescriptor.Create<DependencyInspectorQuery, DependencyGraph>(metadata, options);
+    private static readonly Func<McpToolSerializerContext, McpToolAttribute, McpToolDescriptor> DependencyInspectorFactory =
+        (context, metadata) => CreateDescriptor<DependencyInspectorQuery, DependencyGraph>(context, metadata);
 
     public static IReadOnlyDictionary<string, McpToolDescriptor> GetRegistry()
         => Registry.Value;
@@ -93,13 +97,13 @@ internal static class McpTools
     public static JsonSerializerOptions GetSerializerOptions()
         => SerializerOptions;
 
-    private static Dictionary<string, McpToolDescriptor> BuildRegistry(JsonSerializerOptions options)
+    private static Dictionary<string, McpToolDescriptor> BuildRegistry(McpToolSerializerContext context)
     {
         var descriptors = new Dictionary<string, McpToolDescriptor>(StringComparer.OrdinalIgnoreCase);
 
         foreach (var field in typeof(McpTools).GetFields(BindingFlags.NonPublic | BindingFlags.Static))
         {
-            if (field.GetValue(null) is not Func<JsonSerializerOptions, McpToolAttribute, McpToolDescriptor> factory)
+            if (field.GetValue(null) is not Func<McpToolSerializerContext, McpToolAttribute, McpToolDescriptor> factory)
             {
                 continue;
             }
@@ -110,11 +114,24 @@ internal static class McpTools
                 continue;
             }
 
-            var descriptor = factory(options, attribute);
+            var descriptor = factory(context, attribute);
             descriptors[descriptor.Name] = descriptor;
         }
 
         return descriptors;
+    }
+
+    private static McpToolDescriptor CreateDescriptor<TRequest, TResponse>(
+        McpToolSerializerContext context,
+        McpToolAttribute metadata,
+        Func<JsonNode?, JsonTypeInfo<TRequest>, TRequest>? binder = null)
+        where TRequest : IRequest<TResponse>
+    {
+        var requestInfo = context.GetTypeInfo(typeof(TRequest)) as JsonTypeInfo<TRequest>
+            ?? throw new InvalidOperationException($"Serializer context is missing type info for {typeof(TRequest).FullName}.");
+        var responseInfo = context.GetTypeInfo(typeof(TResponse)) as JsonTypeInfo<TResponse>
+            ?? throw new InvalidOperationException($"Serializer context is missing type info for {typeof(TResponse).FullName}.");
+        return McpToolDescriptor.Create(metadata, requestInfo, responseInfo, binder);
     }
 }
 
@@ -130,8 +147,9 @@ internal sealed record McpToolDescriptor(
 
     public static McpToolDescriptor Create<TRequest, TResponse>(
         McpToolAttribute metadata,
-        JsonSerializerOptions serializerOptions,
-        Func<JsonNode?, JsonSerializerOptions, TRequest>? binder = null)
+        JsonTypeInfo<TRequest> requestTypeInfo,
+        JsonTypeInfo<TResponse> responseTypeInfo,
+        Func<JsonNode?, JsonTypeInfo<TRequest>, TRequest>? binder = null)
         where TRequest : IRequest<TResponse>
     {
         binder ??= DefaultBinder<TRequest>;
@@ -148,7 +166,7 @@ internal sealed record McpToolDescriptor(
                 var mediator = services.GetRequiredService<IMediator>();
                 var validator = services.GetService<IValidator<TRequest>>();
 
-                var request = binder(parameters, serializerOptions);
+                var request = binder(parameters, requestTypeInfo);
 
                 if (validator is not null)
                 {
@@ -156,18 +174,38 @@ internal sealed record McpToolDescriptor(
                 }
 
                 var response = await mediator.Send(request, cancellationToken).ConfigureAwait(false);
-                return JsonSerializer.SerializeToNode<TResponse>(response, serializerOptions);
+                return JsonSerializer.SerializeToNode(response, responseTypeInfo);
             });
     }
 
-    private static TRequest DefaultBinder<TRequest>(JsonNode? parameters, JsonSerializerOptions options)
+    private static TRequest DefaultBinder<TRequest>(JsonNode? parameters, JsonTypeInfo<TRequest> typeInfo)
     {
         if (parameters is null)
         {
             throw new JsonRpcInvalidParamsException("Tool parameters are required but were not provided.");
         }
 
-        var request = parameters.Deserialize<TRequest>(options);
+        var json = parameters.ToJsonString();
+        var request = JsonSerializer.Deserialize(json, typeInfo);
         return request ?? throw new JsonRpcInvalidParamsException("Unable to deserialize tool parameters.");
     }
 }
+
+[JsonSourceGenerationOptions(GenerationMode = JsonSourceGenerationMode.Metadata, PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+[JsonSerializable(typeof(SearchPackagesQuery))]
+[JsonSerializable(typeof(SearchResultSet))]
+[JsonSerializable(typeof(LatestVersionQuery))]
+[JsonSerializable(typeof(VersionDetail))]
+[JsonSerializable(typeof(CheckCompatibilityQuery))]
+[JsonSerializable(typeof(CompatibilityResult))]
+[JsonSerializable(typeof(ListVersionsQuery))]
+[JsonSerializable(typeof(IReadOnlyList<VersionDetail>))]
+[JsonSerializable(typeof(PackageDetailsQuery))]
+[JsonSerializable(typeof(PackageDetails))]
+[JsonSerializable(typeof(PublisherPackagesQuery))]
+[JsonSerializable(typeof(IReadOnlyList<PackageSummary>))]
+[JsonSerializable(typeof(ScoreInsightsQuery))]
+[JsonSerializable(typeof(ScoreInsight))]
+[JsonSerializable(typeof(DependencyInspectorQuery))]
+[JsonSerializable(typeof(DependencyGraph))]
+internal partial class McpToolSerializerContext : JsonSerializerContext;
