@@ -71,23 +71,23 @@
 - [x] T023 [P] Implement AuditLogEntry domain entity in `src/PubDevMcp.Domain/Entities/AuditLogEntry.cs`
 
 ## Phase 3.4: Application Layer (Vertical Slices)
-- [ ] T024 [P] Create SearchPackages MediatR handler with pub.dev API integration in `src/PubDevMcp.Application/Features/SearchPackages/SearchPackagesHandler.cs`
-- [ ] T025 [P] Create LatestVersion MediatR handler with pub.dev API integration in `src/PubDevMcp.Application/Features/LatestVersion/LatestVersionHandler.cs`
-- [ ] T026 [P] Create CheckCompatibility MediatR handler with SDK constraint evaluation in `src/PubDevMcp.Application/Features/CheckCompatibility/CheckCompatibilityHandler.cs`
-- [ ] T027 [P] Create ListVersions MediatR handler with prerelease filtering in `src/PubDevMcp.Application/Features/ListVersions/ListVersionsHandler.cs`
-- [ ] T028 [P] Create PackageDetails MediatR handler with metadata enrichment in `src/PubDevMcp.Application/Features/PackageDetails/PackageDetailsHandler.cs`
-- [ ] T029 [P] Create PublisherPackages MediatR handler with publisher-scoped queries in `src/PubDevMcp.Application/Features/PublisherPackages/PublisherPackagesHandler.cs`
-- [ ] T030 [P] Create ScoreInsights MediatR handler with component score analysis in `src/PubDevMcp.Application/Features/ScoreInsights/ScoreInsightsHandler.cs`
-- [ ] T031 [P] Create DependencyInspector MediatR handler with dependency tree traversal in `src/PubDevMcp.Application/Features/DependencyInspector/DependencyInspectorHandler.cs`
-- [ ] T032 [P] Create FluentValidation validators for all MCP tool requests in `src/PubDevMcp.Application/Validators/`
-- [ ] T033 Create centralized pub.dev HTTP client service with base URL configuration in `src/PubDevMcp.Infrastructure/Services/PubDevApiClient.cs`
+- [x] T024 [P] Create SearchPackages MediatR handler with pub.dev API integration in `src/PubDevMcp.Application/Features/SearchPackages/SearchPackagesHandler.cs`
+- [x] T025 [P] Create LatestVersion MediatR handler with pub.dev API integration in `src/PubDevMcp.Application/Features/LatestVersion/LatestVersionHandler.cs`
+- [x] T026 [P] Create CheckCompatibility MediatR handler with SDK constraint evaluation in `src/PubDevMcp.Application/Features/CheckCompatibility/CheckCompatibilityHandler.cs`
+- [x] T027 [P] Create ListVersions MediatR handler with prerelease filtering in `src/PubDevMcp.Application/Features/ListVersions/ListVersionsHandler.cs`
+- [x] T028 [P] Create PackageDetails MediatR handler with metadata enrichment in `src/PubDevMcp.Application/Features/PackageDetails/PackageDetailsHandler.cs`
+- [x] T029 [P] Create PublisherPackages MediatR handler with publisher-scoped queries in `src/PubDevMcp.Application/Features/PublisherPackages/PublisherPackagesHandler.cs`
+- [x] T030 [P] Create ScoreInsights MediatR handler with component score analysis in `src/PubDevMcp.Application/Features/ScoreInsights/ScoreInsightsHandler.cs`
+- [x] T031 [P] Create DependencyInspector MediatR handler with dependency tree traversal in `src/PubDevMcp.Application/Features/DependencyInspector/DependencyInspectorHandler.cs`
+- [x] T032 [P] Create FluentValidation validators for all MCP tool requests in `src/PubDevMcp.Application/Validators/`
+- [x] T033 Create centralized pub.dev HTTP client service with base URL configuration in `src/PubDevMcp.Infrastructure/Services/PubDevApiClient.cs`
 
 ## Phase 3.5: Infrastructure & Resilience
-- [ ] T034 Configure Polly resilience policies (retry with exponential backoff, circuit breaker, timeout) for pub.dev calls in `src/PubDevMcp.Infrastructure/Policies/PubDevResiliencePolicies.cs`
-- [ ] T035 Implement structured audit logging service with request/response hashing in `src/PubDevMcp.Infrastructure/Services/AuditLoggingService.cs`
-- [ ] T036 Configure IMemoryCache for score insights and dependency graph caching with 10-minute TTL in `src/PubDevMcp.Infrastructure/Services/CacheService.cs`
-- [ ] T037 Implement centralized exception handler mapping to JSON-RPC Problem Details in `src/PubDevMcp.Infrastructure/ErrorHandling/GlobalExceptionHandler.cs`
-- [ ] T038 Configure Serilog with source-generated LoggerMessage and structured JSON output in `src/PubDevMcp.Infrastructure/Logging/LoggingConfiguration.cs`
+- [x] T034 Configure Polly resilience policies (retry with exponential backoff, circuit breaker, timeout) for pub.dev calls in `src/PubDevMcp.Infrastructure/Policies/PubDevResiliencePolicies.cs`
+- [x] T035 Implement structured audit logging service with request/response hashing in `src/PubDevMcp.Infrastructure/Services/AuditLoggingService.cs`
+- [x] T036 Configure IMemoryCache for score insights and dependency graph caching with 10-minute TTL in `src/PubDevMcp.Infrastructure/Services/CacheService.cs`
+- [x] T037 Implement centralized exception handler mapping to JSON-RPC Problem Details in `src/PubDevMcp.Infrastructure/ErrorHandling/GlobalExceptionHandler.cs`
+- [x] T038 Configure Serilog with source-generated LoggerMessage and structured JSON output in `src/PubDevMcp.Infrastructure/Logging/LoggingConfiguration.cs`
 - [ ] T039 Configure OpenTelemetry traces, metrics, and activity sources for MCP request tracking in `src/PubDevMcp.Infrastructure/Telemetry/TelemetryConfiguration.cs`
 
 ## Phase 3.6: Presentation Layer

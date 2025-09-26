@@ -25,12 +25,14 @@ public sealed class CheckCompatibilityHandler : IRequestHandler<CheckCompatibili
     {
         var compatibilityRequest = CompatibilityRequest.Create(request.Package, request.FlutterSdk, request.ProjectConstraint);
         var flutterSdkVersion = ParseVersion(compatibilityRequest.FlutterSdk);
+        var projectConstraint = ParseProjectConstraint(compatibilityRequest.ProjectConstraint);
 
         var versions = await _apiClient.GetVersionHistoryAsync(compatibilityRequest.Package, cancellationToken).ConfigureAwait(false);
         var evaluated = versions.Take(20).ToArray();
 
         var recommended = evaluated
             .Where(version => SatisfiesSdkConstraint(version.SdkConstraint, flutterSdkVersion))
+            .Where(version => SatisfiesProjectConstraint(version.Version, projectConstraint))
             .Where(version => !version.IsPrerelease)
             .OrderByDescending(version => version.Released)
             .ThenByDescending(version => ParseVersion(version.Version))
@@ -41,6 +43,7 @@ public sealed class CheckCompatibilityHandler : IRequestHandler<CheckCompatibili
         {
             var prereleaseFallback = evaluated
                 .Where(version => SatisfiesSdkConstraint(version.SdkConstraint, flutterSdkVersion))
+                .Where(version => SatisfiesProjectConstraint(version.Version, projectConstraint))
                 .OrderByDescending(version => version.Released)
                 .ThenByDescending(version => ParseVersion(version.Version))
                 .FirstOrDefault();
@@ -53,8 +56,8 @@ public sealed class CheckCompatibilityHandler : IRequestHandler<CheckCompatibili
         }
 
         var explanation = satisfies
-            ? $"Selected version {recommended!.Version} satisfies Flutter SDK constraint {compatibilityRequest.FlutterSdk}."
-            : $"No available versions within the latest {evaluated.Length} releases satisfy Flutter SDK constraint {compatibilityRequest.FlutterSdk}.";
+            ? BuildSuccessExplanation(recommended!, compatibilityRequest, projectConstraint)
+            : BuildFailureExplanation(compatibilityRequest, projectConstraint, evaluated.Length);
 
         return CompatibilityResult.Create(
             compatibilityRequest,
@@ -62,6 +65,21 @@ public sealed class CheckCompatibilityHandler : IRequestHandler<CheckCompatibili
             satisfies,
             explanation,
             evaluated);
+    }
+
+    private static VersionRange? ParseProjectConstraint(string? constraint)
+    {
+        if (string.IsNullOrWhiteSpace(constraint) || constraint.Equals("any", StringComparison.OrdinalIgnoreCase))
+        {
+            return null;
+        }
+
+        if (VersionRange.TryParse(constraint.Trim(), out var parsed))
+        {
+            return parsed;
+        }
+
+        throw new InvalidOperationException($"Invalid project constraint '{constraint}'.");
     }
 
     private static NuGetVersion ParseVersion(string version)
@@ -145,5 +163,37 @@ public sealed class CheckCompatibilityHandler : IRequestHandler<CheckCompatibili
         }
 
         return comparisons.All(comparison => comparison());
+    }
+
+    private static bool SatisfiesProjectConstraint(string version, VersionRange? projectConstraint)
+    {
+        if (projectConstraint is null)
+        {
+            return true;
+        }
+
+        var parsed = ParseVersion(version);
+        return projectConstraint.Satisfies(parsed);
+    }
+
+    private static string BuildSuccessExplanation(VersionDetail version, CompatibilityRequest request, VersionRange? projectConstraint)
+    {
+        var sdkPart = $"Flutter SDK constraint {request.FlutterSdk}";
+        var projectPart = projectConstraint is null
+            ? null
+            : $"project constraint {request.ProjectConstraint}";
+
+        var constraintSummary = projectPart is null ? sdkPart : $"{sdkPart} and {projectPart}";
+        return $"Selected version {version.Version} satisfies {constraintSummary}.";
+    }
+
+    private static string BuildFailureExplanation(CompatibilityRequest request, VersionRange? projectConstraint, int evaluatedCount)
+    {
+        var sdkPart = $"Flutter SDK constraint {request.FlutterSdk}";
+        var projectPart = projectConstraint is null
+            ? null
+            : $" and project constraint {request.ProjectConstraint}";
+
+        return $"No available versions within the latest {evaluatedCount} releases satisfy {sdkPart}{projectPart}.";
     }
 }

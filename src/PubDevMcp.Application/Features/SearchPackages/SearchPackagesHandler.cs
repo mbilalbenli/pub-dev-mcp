@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -6,7 +7,7 @@ using PubDevMcp.Domain.Entities;
 
 namespace PubDevMcp.Application.Features.SearchPackages;
 
-public sealed record SearchPackagesQuery(string Query) : IRequest<SearchResultSet>;
+public sealed record SearchPackagesQuery(string Query, bool IncludePrerelease = false, string? SdkConstraint = null) : IRequest<SearchResultSet>;
 
 public sealed class SearchPackagesHandler : IRequestHandler<SearchPackagesQuery, SearchResultSet>
 {
@@ -17,6 +18,19 @@ public sealed class SearchPackagesHandler : IRequestHandler<SearchPackagesQuery,
         _apiClient = apiClient;
     }
 
-    public Task<SearchResultSet> Handle(SearchPackagesQuery request, CancellationToken cancellationToken)
-        => _apiClient.SearchPackagesAsync(request.Query, cancellationToken);
+    public async Task<SearchResultSet> Handle(SearchPackagesQuery request, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+
+        var query = request.Query?.Trim();
+        ArgumentException.ThrowIfNullOrWhiteSpace(query);
+
+        var sdkConstraint = string.IsNullOrWhiteSpace(request.SdkConstraint)
+            ? null
+            : request.SdkConstraint.Trim();
+
+        return await _apiClient
+            .SearchPackagesAsync(query, request.IncludePrerelease, sdkConstraint, cancellationToken)
+            .ConfigureAwait(false);
+    }
 }
