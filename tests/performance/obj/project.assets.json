@@ -4038,11 +4038,6 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "BenchmarkDotNet >= 0.15.4",
-      "Microsoft.Extensions.Configuration >= 9.0.0",
-      "Microsoft.Extensions.Configuration.Binder >= 9.0.0",
-      "Microsoft.Extensions.Configuration.Memory >= 9.0.0",
-      "Microsoft.Extensions.DependencyInjection >= 9.0.0",
-      "Microsoft.Extensions.Logging.Abstractions >= 9.0.0",
       "PubDevMcp.Server >= 1.0.0"
     ]
   },
@@ -4097,26 +4092,6 @@
           "BenchmarkDotNet": {
             "target": "Package",
             "version": "[0.15.4, )"
-          },
-          "Microsoft.Extensions.Configuration": {
-            "target": "Package",
-            "version": "[9.0.0, )"
-          },
-          "Microsoft.Extensions.Configuration.Binder": {
-            "target": "Package",
-            "version": "[9.0.0, )"
-          },
-          "Microsoft.Extensions.Configuration.Memory": {
-            "target": "Package",
-            "version": "[9.0.0, )"
-          },
-          "Microsoft.Extensions.DependencyInjection": {
-            "target": "Package",
-            "version": "[9.0.0, )"
-          },
-          "Microsoft.Extensions.Logging.Abstractions": {
-            "target": "Package",
-            "version": "[9.0.0, )"
           }
         },
         "imports": [
@@ -4138,16 +4113,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.Extensions.Configuration.Memory. No packages exist with this id in source(s): nuget.org",
-      "libraryId": "Microsoft.Extensions.Configuration.Memory",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +27,8 @@ namespace PubDevMcp.Tests.Performance;
 
 [Config(typeof(ThroughputConfig))]
 [MemoryDiagnoser]
-public sealed class McpPerformanceBenchmarks : IDisposable
+[SuppressMessage("Performance", "CA1812", Justification = "BenchmarkDotNet discovers benchmarks via reflection.")]
+internal sealed class McpPerformanceBenchmarks : IDisposable
 {
     private ServiceProvider? _provider;
     private JsonRpcPipeline _pipeline = default!;
@@ -46,7 +48,7 @@ public sealed class McpPerformanceBenchmarks : IDisposable
     public void Setup()
     {
         var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string>
+            .AddInMemoryCollection(new Dictionary<string, string?>
             {
                 ["PubDev:Api:BaseAddress"] = "https://performance.local/",
                 ["PubDev:Api:UserAgent"] = "PubDevMcp.Tests.Performance/1.0",
@@ -55,8 +57,8 @@ public sealed class McpPerformanceBenchmarks : IDisposable
             .Build();
 
         var services = new ServiceCollection();
-        services.AddLogging(builder => builder.ClearProviders());
-        services.AddSingleton(new ActivitySource("PubDevMcp.Server"));
+    services.AddLogging(builder => builder.ClearProviders());
+    services.AddSingleton<ActivitySource>(_ => new ActivitySource("PubDevMcp.Server"));
 
         ServiceConfiguration.Configure(services, configuration);
 
@@ -107,19 +109,19 @@ public sealed class McpPerformanceBenchmarks : IDisposable
         => _pipeline.ExecuteAsync(_listVersionsPayload, CancellationToken.None);
 
     [Benchmark]
-    public Task<string?> PackageDetails()
+    public Task<string?> PackageDetailsTool()
         => _pipeline.ExecuteAsync(_packageDetailsPayload, CancellationToken.None);
 
     [Benchmark]
-    public Task<string?> PublisherPackages()
+    public Task<string?> PublisherPackagesTool()
         => _pipeline.ExecuteAsync(_publisherPackagesPayload, CancellationToken.None);
 
     [Benchmark]
-    public Task<string?> ScoreInsights()
+    public Task<string?> ScoreInsightsTool()
         => _pipeline.ExecuteAsync(_scoreInsightsPayload, CancellationToken.None);
 
     [Benchmark]
-    public Task<string?> DependencyInspector()
+    public Task<string?> DependencyInspectorTool()
         => _pipeline.ExecuteAsync(_dependencyInspectorPayload, CancellationToken.None);
 
     [Benchmark]
@@ -200,6 +202,7 @@ public sealed class McpPerformanceBenchmarks : IDisposable
             ["includeDevDependencies"] = true
         };
 
+    [SuppressMessage("Performance", "CA1812", Justification = "Instantiated via BenchmarkDotNet configuration metadata.")]
     private sealed class ThroughputConfig : ManualConfig
     {
         public ThroughputConfig()
@@ -208,7 +211,6 @@ public sealed class McpPerformanceBenchmarks : IDisposable
                 .WithRuntime(CoreRuntime.Core90)
                 .WithWarmupCount(2)
                 .WithIterationCount(6)
-                .WithMaxIterationCount(6)
                 .WithId("short"));
 
             AddDiagnoser(MemoryDiagnoser.Default);
@@ -216,6 +218,7 @@ public sealed class McpPerformanceBenchmarks : IDisposable
         }
     }
 
+    [SuppressMessage("Performance", "CA1812", Justification = "Activated through dependency injection for benchmarks.")]
     private sealed class FakePubDevApiClient : IPubDevApiClient
     {
         private static readonly VersionDetail StableRelease = VersionDetail.Create(
@@ -437,7 +440,7 @@ internal static class PerformanceBudget
                 continue;
             }
 
-            var p95 = TimeSpan.FromNanoseconds(statistics.Percentiles.P95);
+            var p95 = TimeSpan.FromMilliseconds(statistics.Percentiles.P95 / 1_000_000d);
             if (p95 > p95Budget)
             {
                 throw new InvalidOperationException($"Benchmark '{report.BenchmarkCase.Descriptor.WorkloadMethod.Name}' exceeded the p95 budget of {p95Budget.TotalSeconds:F2}s with {p95.TotalSeconds:F2}s.");
