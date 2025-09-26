@@ -1,0 +1,6 @@
+{
+  "PubDevMcp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Application",
+  "PubDevMcp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Domain",
+  "PubDevMcp.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Infrastructure",
+  "PubDevMcp.Server, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Repos\\mcp_servers\\pub_dev_mcp\\src\\PubDevMcp.Server"
+}

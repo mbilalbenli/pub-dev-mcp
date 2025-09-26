@@ -5,39 +5,65 @@
 - .NET 9 SDK (9.0.0-preview or later with C# 13 features enabled)
 - PowerShell 7+ or Windows PowerShell 5.1 for scripts
 - Access to pub.dev REST API endpoints over HTTPS
-- Optional: Docker for container packaging
+- Optional but recommended: Docker Desktop 4.27+ for container packaging and validation
+- Optional: Native AOT prerequisites for Windows (`C++ Desktop Development` workload in Visual Studio Build Tools + Windows 11 SDK) when publishing self-contained binaries outside Docker
 
 ## First-Time Setup
 
 1. Clone the repository and checkout the `001-build-an-mcp` branch.
-2. Restore tools:
+2. Restore solution dependencies:
    ```powershell
-   dotnet tool restore
+   dotnet restore PubDevMcp.sln
    ```
-3. Install required workspaces analyzers (once per machine):
+3. Build once to warm caches and validate toolchain:
    ```powershell
-   dotnet restore
+   dotnet build PubDevMcp.sln --configuration Release
    ```
 4. Configure environment variables (development defaults):
    - `PUBDEV_BASE_URL=https://pub.dev`
    - `MCP_LOG_LEVEL=Information`
    - `MCP_TELEMETRY_EXPORTER=console`
+   - Optional override: `MCP_TRANSPORT=HTTP` to force HTTP hosting without CLI flags
 
 ## Running the MCP Server Locally
+
+### Stdio transport (default)
 
 ```powershell
 dotnet run --project src/PubDevMcp.Server/PubDevMcp.Server.csproj -- --stdio
 ```
 
-- The server listens on stdio for local assistants.
-- Use the MCP client of choice (e.g., VS Code or CLI) to connect.
+- Streams JSON-RPC over stdio for tools like Claude Desktop or VS Code MCP clients.
+- Stop the process with <kbd>Ctrl+C</kbd>.
+
+### HTTP transport
+
+```powershell
+$env:ASPNETCORE_URLS="http://localhost:5111";
+dotnet run --project src/PubDevMcp.Server/PubDevMcp.Server.csproj -- --http
+```
+
+- Serves JSON-RPC at `POST /rpc` plus health checks under `/health/live` and `/health/ready`.
+- Combine with an HTTP-capable MCP client or forwarder.
+- You can also set `MCP_TRANSPORT=HTTP` and omit the `--http` argument.
+
+### Dockerized HTTP hosting
+
+```powershell
+docker build -t pub-dev-mcp:latest .
+docker run --rm -p 5111:8080 pub-dev-mcp:latest --http
+```
+
+- Multi-stage Dockerfile publishes a NativeAOT binary (linux-x64 by default). Use `--build-arg TARGETARCH=arm64` when targeting Apple Silicon.
+- Health endpoint: `http://localhost:5111/health/live`
+- Override runtime args (for example, log level) with `-e` environment flags when launching the container.
 
 ## Exercising Core Tools
 
 1. **Search packages**
 
    ```powershell
-   dotnet test tests/contract/PubDevMcp.Contracts.Tests.csproj --filter "SearchPackages"
+   dotnet test tests/contract/PubDevMcp.Tests.Contract.csproj --filter "SearchPackages"
    ```
 
    Expects 10 results and a follow-up hint when more packages are available.
@@ -45,22 +71,36 @@ dotnet run --project src/PubDevMcp.Server/PubDevMcp.Server.csproj -- --stdio
 2. **Check compatibility**
 
    ```powershell
-   dotnet test tests/integration/PubDevMcp.Integration.Tests.csproj --filter "Compatibility_ResolvesLatest"
+   dotnet test tests/integration/PubDevMcp.Tests.Integration.csproj --filter "Compatibility_ResolvesLatest"
    ```
 
    Validates constraint evaluation for a sample Flutter SDK version.
 
 3. **Inspect dependency tree**
    ```powershell
-   dotnet test tests/integration/PubDevMcp.Integration.Tests.csproj --filter "DependencyInspector_FlutterSdk"
+   dotnet test tests/integration/PubDevMcp.Tests.Integration.csproj --filter "DependencyInspector_FlutterSdk"
    ```
    Ensures recursion depth limits and conflict reporting.
 
 ## Observability & Diagnostics
 
-- Structured logs are emitted to console and `logs/` via Serilog JSON sink.
-- OpenTelemetry exporter publishes traces to console; configure `OTEL_EXPORTER_OTLP_ENDPOINT` for remote collectors.
-- Health endpoints exposed under `GET /health/live` and `GET /health/ready` when running in HTTP mode.
+- Structured JSON logs stream to stdout; configure `MCP_LOG_LEVEL` or `Serilog__MinimumLevel__Default` to dial verbosity.
+- OpenTelemetry exporter defaults to console; set `OTEL_EXPORTER_OTLP_ENDPOINT` (and credentials) for remote collectors.
+- Docker images expose port 8080 internally and publish health endpoints at `/health/live` and `/health/ready`.
+
+## Publishing NativeAOT Binaries
+
+To produce a self-contained NativeAOT build on Windows, install the Visual Studio Build Tools with the **C++ Desktop Development** workload, then run:
+
+```powershell
+dotnet publish src/PubDevMcp.Server/PubDevMcp.Server.csproj `
+   -c Release `
+   -r win-x64 `
+   /p:PublishAot=true /p:SelfContained=true /p:PublishTrimmed=true /p:InvariantGlobalization=true `
+   --no-restore
+```
+
+Use `-r linux-x64` when publishing inside WSL or Linux environments. Cross-OS AOT publishing isn't supported; build on the target OS.
 
 ## Cleanup
 
